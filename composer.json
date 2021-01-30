@@ -1,0 +1,22 @@
+{
+  "name": "roboweb/evmar",
+  "description": "WordPress theme for EvMAR",
+  "type": "wordpress-theme",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "email": "ykee.tomasz.wolny@roboweb.eu",
+      "name": "roboweb",
+      "homepage": "https://github.com/RoboWeb?tab=repositories"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    }
+  ],
+  "require": {
+    "timber/timber": "1.*"
+  }
+}
