@@ -19,7 +19,7 @@
 
 		function testFunctionsPHP() {
 			$context = Timber::context();
-			$this->assertEquals('StarterSite', get_class($context['site']));
+			$this->assertEquals('RoboSite', get_class($context['site']));
 			$this->assertTrue(current_theme_supports('post-thumbnails'));
 			$this->assertEquals('bar', $context['foo']);
 		}

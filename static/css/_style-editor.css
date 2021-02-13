@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /** Header of Gutenberg editor */
+  .edit-post-visual-editor__post-title-wrapper .editor-post-title {
+    margin: 0 auto 32px;
+    border-bottom: solid 2px black;
+    max-width: none;
+  }
+
+  /** Blocks */
+  .edit-post-visual-editor.editor-styles-wrapper {
+    margin: 0;
+    padding: 1px;
+  }
+
+  .is-root-container > .block-editor-block-list__block,
+  .is-root-container > .block-editor-block-list__block > .wp-block {
+    max-width: none;
+    margin: 5px auto;
+  }
+
+  .wp-block-columns
+    .block-editor-block-list__block.wp-block-column:not(:first-child) {
+    margin-left: 10px;
+  }
+
+  .wp-block[data-align="wide"] {
+    max-width: 1280px;
+  }
+
+  .block-editor-block-list__layout .block-editor-block-list__block.is-hovered,
+  .block-editor-block-list_block.is-selected {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  }
+
+  /** fonts */
+  .has-extra-small-font-size {
+    font-size: 0.8em;
+  }
+  .has-small-font-size {
+    font-size: 0.9em;
+  }
+  .has-normal-font-size {
+    font-size: 1em;
+  }
+  .has-large-font-size {
+    font-size: 1.3em;
+  }
+  .has-extra-large-font-size {
+    font-size: 40px;
+  }
+
+  /**
+   * Buttons
+   */
+  .button {
+    @apply w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md;
+  }
+}

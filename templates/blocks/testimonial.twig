@@ -1,0 +1,32 @@
+{#
+  Title: Testimonial
+  Description: Custom Customer Testimonial
+  Category: formatting
+  Icon: admin-comments
+  Keywords: testimonial quote "customer testimonial"
+  Mode: edit
+  Align: center
+  PostTypes: page post
+  SupportsAlign: left right center
+  SupportsMode: true
+  SupportsMultiple: true
+#}
+
+<blockquote class="{{ classes }} block-{{ block.id }}" {{ block.id }}>
+	<p>
+		<strong>{{ fields.testimonial }}</strong>
+	</p>
+	<cite>
+		<span>~
+			{{ fields.author }}</span>
+	</cite>
+</blockquote>
+
+<style type="text/css">
+	.block-{{block.id}}{
+		background: {{fields.background_color}}
+		;
+		color: {{fields.text_color}}
+		;
+	}
+</style>

@@ -1,0 +1,62 @@
+/*
+ * Theme Name: WP Robo Theme
+ * Theme URI: https://github.com/RoboWeb/wp-robo-theme
+ * Description: WordPress, Timber based theme
+ * Author: Tomasz Wolny
+ * Author URI: https://github.com/RoboWeb
+ * Tags: blog, one-column, custom-background, custom-colors, custom-logo, custom-menu, editor-style, featured-images, footer-widgets, full-width-template, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, block-styles, wide-blocks, accessibility-ready
+ * Version: 0.1
+ * Requires at least: 5.x
+ * Tested up to: 5.4
+ * Requires PHP: 7.3
+ * License: GNU General Public License v3 or later
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.html
+ * Text Domain: wprobotheme
+*/
+@charset "UTF-8";
+@tailwind base;
+/** Tailwind components */
+@tailwind components;
+/** Tailwind utilities */
+@tailwind utilities;
+/** Extend utilities */
+@layer utilities {
+  #header {
+    @apply fixed top-0;
+  }
+  .admin-bar #header {
+    @apply top-8;
+  }
+  #header,
+  #footer,
+  #content {
+    @apply w-screen;
+  }
+  #header > .wrapper,
+  #footer > .wrapper {
+    @apply max-w-screen-xl my-0 mx-auto;
+  }
+
+  /**
+   * Blocks
+   */
+  /** cover - okładka */
+  #content .wp-block-cover,
+  #content .wp-block-cover-image {
+    @apply p-0;
+  }
+
+  #content .alignwide {
+    @apply w-full max-w-screen-xl my-0 mx-auto;
+  }
+  #content .alignfull {
+    @apply w-full max-w-full m-0;
+  }
+
+  /**
+   * Buttons
+   */
+  .button {
+    @apply w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md;
+  }
+}

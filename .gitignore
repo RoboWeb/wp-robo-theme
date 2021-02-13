@@ -1,4 +1,5 @@
 vendor
 wp-content
 composer.lock
-node-modules
+package-lock.json
+node_modules

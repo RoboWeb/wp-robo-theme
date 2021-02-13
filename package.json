@@ -1,0 +1,31 @@
+{
+  "name": "wp-robo-theme",
+  "version": "1.0.0",
+  "description": "WordPress theme for EvMAR",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "postcss static/css/_style.css -o style.css",
+    "dev": "postcss ./static/css/_style-editor.css -o ./style-editor.css",
+    "dev:full": "npx tailwindcss-cli@latest build ./static/css/_style-editor.css -o ./style-editor.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoboWeb/wp-robo-theme.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RoboWeb/wp-robo-theme/issues"
+  },
+  "homepage": "https://github.com/RoboWeb/wp-robo-theme#readme",
+  "dependencies": {
+    "autoprefixer": "^10.2.4",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.2"
+  }
+}

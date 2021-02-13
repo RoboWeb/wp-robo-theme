@@ -1,1 +1,7 @@
-Copyright {{"now"|date('Y')}}
+<div class="wrapper">
+	{% include "menu_footer.twig" with {'items': menu.footer.get_items} %}
+	<div class="copyright">
+		Copyright &copy;
+		{{"now"|date('Y')}}
+	</div>
+</div>

@@ -17,6 +17,7 @@
     }
   ],
   "require": {
-    "timber/timber": "1.*"
+    "timber/timber": "1.*",
+    "palmiak/timber-acf-wp-blocks": "^1.15"
   }
 }
