@@ -6,11 +6,8 @@
 	class="no-js no-svg" {{ site.language_attributes }}> <!--<![endif]-->
 	<head>
 		<meta charset="{{ site.charset }}"/>
-		<meta
-		name="description" content="{{ site.description }}">
-		{# @todo: remove tailwind css file fr production! #}
-		<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="{{ site.theme.link }}/style.css?v=20210227.2115" type="text/css" media="screen"/>
+		<meta name="description" content="{{ site.description }}">
+		<link rel="stylesheet" href="{{ site.theme.link }}/style.min.css?v=20210228.1747" type="text/css" media="screen"/>
 
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,6 +51,10 @@
 						{% include "menu.twig" with {'items': menu.primary.get_items} %}
 					</nav>
 					<!-- #nav -->
+
+					<nav id="nav-langs" class="nav-langs flex-0 w-1/12" role="navigation">
+						{% include "menu.twig" with {'items': menu.langs.get_items} %}
+					</nav>
 				</div>
 			{% endblock %}
 		</header>

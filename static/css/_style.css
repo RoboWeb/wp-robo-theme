@@ -39,6 +39,17 @@
   .admin-bar #header {
     @apply top-8;
   }
+
+  .navigation {
+    @apply flex flex-row flex-nowrap justify-items-stretch justify-end h-full px-12;
+  }
+  .nav-main .navigation .nav-item {
+    @apply px-12;
+  }
+  .nav-langs .navigation .nav-item {
+    @apply pl-6;
+  }
+
   #header,
   #footer,
   #content {

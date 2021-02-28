@@ -1,12 +1,10 @@
-{% if menu.primary %}
-	<ul class="flex flex-row flex-nowrap justify-items-stretch justify-end h-full">
-		{% for item in items %}
-			<li class="{{ item.classes | join(' ') }} {{ loop.first ? "pl-0 pr-12" : loop.last ? "pr-0 pl-12" : "px-12" }}">
-				<a class="h-full flex flex-wrap content-center px-1 lowercase text-gray-300 hover:text-gray-500" target=" {{ item.target }} " href=" {{ item.link }} ">{{ item.title }}</a>
-				{% if item.children %}
-					{% include "menu.twig" with {'items': item.children} %}
-				{% endif %}
-			</li>
-		{% endfor %}
-	</ul>
-{% endif %}
+<ul class="navigation">
+	{% for item in items %}
+		<li class="{{ item.classes | join(' ') }} nav-item">
+			<a class="h-full flex flex-wrap content-center px-1 lowercase text-gray-300 hover:text-gray-500" target=" {{ item.target }} " href=" {{ item.link }} ">{{ item.title }}</a>
+			{% if item.children %}
+				{% include "menu.twig" with {'items': item.children} %}
+			{% endif %}
+		</li>
+	{% endfor %}
+</ul>

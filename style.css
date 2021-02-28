@@ -740,6 +740,10 @@ video {
   width: 80%;
 }
 
+.w-1\/12{
+  width: 8.333333%;
+}
+
 .w-5\/12{
   width: 41.666667%;
 }
@@ -830,6 +834,26 @@ video {
 
 .admin-bar #header {
   top: 2rem;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-items: stretch;
+  justify-content: flex-end;
+  height: 100%;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.nav-main .navigation .nav-item {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.nav-langs .navigation .nav-item {
+  padding-left: 1.5rem;
 }
 
 #header, #footer, #content{
