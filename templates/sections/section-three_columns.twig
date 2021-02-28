@@ -1,0 +1,28 @@
+{#
+  Title: Section: Three columns
+  Description: A section with three columns
+#}
+
+{% set fields = section.section_three_columns %}
+{% set col_1_wide_classes = fields.left_column.is_wider ? " flex-0 w-5/12" : " flex-1" %}
+{% set col_2_wide_classes = fields.median_column.is_wider and not fields.left_column.is_wider ? " flex-0 w-5/12" : " flex-1" %}
+{% set col_3_wide_classes = fields.right_column.is_wider and not fields.left_column.is_wider and not fields.median_column.is_wider ? " flex-0 w-5/12" : " flex-1" %}
+
+
+<div class="section-content-wrapper w-full max-w-screen-xl mx-auto flex md:flex-row flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
+	{% if fields.left_column %}
+		<div class="column column-first px-12 py-16 -ml-12{{ col_1_wide_classes }}">
+			{% include "blocks/content-block.twig" with { 'content': fields.left_column } %}
+		</div>
+	{% endif %}
+	{% if fields.median_column %}
+		<div class="column px-12 py-16{{ col_2_wide_classes }}" style="{{ fields.median_column.column_bg_color ? "background-color: #{fields.median_column.column_bg_color};" : "" }}{{fields.median_column.column_txt_color ? "color: #{fields.median_column.column_txt_color};" : ""}}">
+			{% include "blocks/content-block.twig" with { content: fields.median_column, parent_is: "section_three-columns" } %}
+		</div>
+	{% endif %}
+	{% if fields.right_column %}
+		<div class="column column-last px-12 py-16 -mr-12{{ col_3_wide_classes }}">
+			{% include "blocks/content-block.twig" with { 'content': fields.right_column, parent_is: "section_three-columns" } %}
+		</div>
+	{% endif %}
+</div>

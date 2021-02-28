@@ -1,0 +1,44 @@
+{#
+  Title: Section: Two rows
+  Description: A section with three columns
+#}
+
+{% set fields = section.section_big_image_below %}
+
+<div class="section-content-wrapper w-full max-w-screen-xl mx-auto flex flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
+
+	{% if fields.content.title or fields.content.introduction %}
+		<div class="row flex flex-row items-stretch">
+			{% if fields.content.title %}
+				<div class="column text-left flex-0 w-5/12 pr-12">
+					<h2 class="block-content-title font-bold text-5xl">{{ fields.content.title }}</h2>
+				</div>
+			{% endif %}
+			{% if fields.content.introduction %}
+				<div class="column text-left flex-1 text-left pl-12">
+					<p class="block-content-intro text-xl">{{ fields.content.introduction }}</p>
+				</div>
+			{% endif %}
+			{# 
+										{% if content.link %}
+											<a href="{{ content.link.url }}" target="{{ content.link.target ?: "_self" }}" class="lowercase underline hero-intro">
+												{{ content.link.title ?: "read more" }}
+											</a>
+										{% endif %}
+									#}
+			<!-- 
+									{% for key, value in fields.content %}																
+									[{{ key }}]:
+									{{ value }}
+									{% endfor %} 
+									-->
+		</div>
+	{% endif %}
+	{% if fields.big_image %}
+		<div class="row">
+			<div class="column">
+				{% include "blocks/image-block.twig" with { 'image': fields.big_image } %}
+			</div>
+		</div>
+	{% endif %}
+</div>

@@ -57,6 +57,9 @@ Timber::$autoescape = false;
  * You can move this to its own file and include here via php's include("MySite.php")
  */
 class RoboSite extends Timber\Site {
+	/** @private $color_palette {Array} */
+	private $color_palette = [];
+
 	/** Add timber support. */
 	public function __construct() {
 		add_action( 'after_setup_theme', [ $this, 'robo_theme_setup' ] );
@@ -64,14 +67,30 @@ class RoboSite extends Timber\Site {
 		add_action( 'widgets_init', [ $this, 'robo_widgets_init' ] );
 		add_filter( 'timber/context', [ $this, 'add_to_context' ] );
 		add_filter( 'timber/twig', [ $this, 'add_to_twig' ] );
-		add_filter( 'timber/acf-gutenberg-blocks-templates', [$this, 'robo_block_templates'] );
+		// add_filter( 'timber/acf-gutenberg-blocks-templates', [$this, 'robo_block_templates'] );
 
 		add_action( 'init', [ $this, 'register_post_types' ] );
 		add_action( 'init', [ $this, 'register_taxonomies' ] );
-
 		// add_action( 'init', [ $this, 'robo_gutemberg_style']);
-
 		add_action( 'acf/init', [$this, 'robo_acf_init']);
+
+		// remove styles of advanced forms
+		// wp_dequeue_style( 'af-form-style' );
+		// wp_dequeue_style( 'select2' );
+		// wp_dequeue_style( 'acf-input' );
+
+		// // Date picker
+		// wp_dequeue_script( 'jquery-ui-datepicker' );
+		// wp_dequeue_style( 'acf-datepicker' );
+
+		// // Date and time picker
+		// wp_dequeue_script( 'acf-timepicker' );
+		// wp_dequeue_style( 'acf-timepicker' );
+
+		// // Color picker
+		// wp_dequeue_script( 'wp-color-picker' );
+		// wp_dequeue_style( 'wp-color-picker' );
+
 		parent::__construct();
 	}
 	/** This is where you can register custom post types. */
@@ -88,15 +107,22 @@ class RoboSite extends Timber\Site {
 	 * @param string $context context['this'] Being the Twig's {{ this }}.
 	 */
 	public function add_to_context( $context ) {
-		$context['roboweb'] = 'RoboWeb';
+		$context['roboweb'] 	= 'RoboWeb';
 		$context['reprezentuj'] = 'Reprezentuj';
+
+		$context['custom_logo'] = [
+			'max_width' => 150,
+			'max_height' => 60
+		];
 		$context['menu'] = [
 			'primary'	=> new Timber\Menu('primary'),
 			'footer' 	=> new Timber\Menu('footer'),
 			'langs' 	=> new Timber\Menu('langs'),
 			'social' 	=> new Timber\Menu('social')
 		];
-		$context['site']  = $this;
+
+		$context['bottom_widgets'] = Timber::get_widgets( 'sidebar-bottom' );
+		$context['site'] = $this;
 		return $context;
 	}
 
@@ -182,81 +208,17 @@ class RoboSite extends Timber\Site {
 		remove_filter('comment_text_rss', 'wp_staticize_emoji');
 		
 		/** EDITOR - GUTENBERG*/
-		add_theme_support( 'wp-block-styles' );
+		add_filter('use_block_editor_for_post', '__return_false', 10);
+		// add_theme_support( 'wp-block-styles' );
 		// Add support for full and wide align images.
-		add_theme_support( 'align-wide' );
+		// add_theme_support( 'align-wide' );
 
 		// Add support for editor styles.
-		add_theme_support( 'editor-styles' );
-		add_editor_style( 'style-editor.css' );
+		// add_theme_support( 'editor-styles' );
+		// add_editor_style( 'style-editor.css' );
 
-		// Editor color palette.
-		$black     = '#000000';
-		$dark_gray = '#28303D';
-		$gray      = '#39414D';
-		$green     = '#D1E4DD';
-		$blue      = '#D1DFE4';
-		$purple    = '#D1D1E4';
-		$red       = '#E4D1D1';
-		$orange    = '#E4DAD1';
-		$yellow    = '#EEEADD';
-		$white     = '#FFFFFF';
 
-		add_theme_support(
-			'editor-color-palette',
-			[
-				[
-					'name'  => esc_html__( 'Black', 'robo' ),
-					'slug'  => 'black',
-					'color' => $black,
-				],
-				[
-					'name'  => esc_html__( 'Dark gray', 'robo' ),
-					'slug'  => 'dark-gray',
-					'color' => $dark_gray,
-				],
-				[
-					'name'  => esc_html__( 'Gray', 'robo' ),
-					'slug'  => 'gray',
-					'color' => $gray,
-				],
-				[
-					'name'  => esc_html__( 'Green', 'robo' ),
-					'slug'  => 'green',
-					'color' => $green,
-				],
-				[
-					'name'  => esc_html__( 'Blue', 'robo' ),
-					'slug'  => 'blue',
-					'color' => $blue,
-				],
-				[
-					'name'  => esc_html__( 'Purple', 'robo' ),
-					'slug'  => 'purple',
-					'color' => $purple,
-				],
-				[
-					'name'  => esc_html__( 'Red', 'robo' ),
-					'slug'  => 'red',
-					'color' => $red,
-				],
-				[
-					'name'  => esc_html__( 'Orange', 'robo' ),
-					'slug'  => 'orange',
-					'color' => $orange,
-				],
-				[
-					'name'  => esc_html__( 'Yellow', 'robo' ),
-					'slug'  => 'yellow',
-					'color' => $yellow,
-				],
-				[
-					'name'  => esc_html__( 'White', 'robo' ),
-					'slug'  => 'white',
-					'color' => $white,
-				],
-			]
-		);
+
 
 		// Add custom editor font sizes.
 		// add_theme_support('disable-custom-font-sizes');
@@ -318,6 +280,8 @@ class RoboSite extends Timber\Site {
 
 		// Add support for custom line height controls.
 		add_theme_support( 'custom-line-height' );
+
+		
 	}
 
 	/**
@@ -387,6 +351,21 @@ class RoboSite extends Timber\Site {
 		return $text;
 	}
 
+	/**
+	 * @param number of ID of formular
+	 */
+	public function render_form($id) {
+		$args = [
+			'display_title' => false,
+			'display_description' => false,
+			'submit_text' => __('Submit', 'rcom'),
+			'echo' => false,
+			'target' => '#contact_form_' . $id
+		];
+
+		return advanced_form($id, $args);
+	}
+
 	/** This is where you can add your own functions to twig.
 	 *
 	 * @param string $twig get extension.
@@ -394,61 +373,34 @@ class RoboSite extends Timber\Site {
 	public function add_to_twig( $twig ) {
 		$twig->addExtension( new Twig\Extension\StringLoaderExtension() );
 		$twig->addFilter( new Twig\TwigFilter( 'myfoo', [ $this, 'myfoo' ] ) );
+		$twig->addFunction(new Timber\Twig_Function('renderForm', [$this, 'render_form']));
 		return $twig;
-	}
-
-	public function robo_block_templates() {
-		return ['templates/blocks'];
 	}
 
 	/** Robo ACF init */
 	public function robo_acf_init() {
 		// sprawdzamy czy funkcja istnieje
         if( !function_exists('acf_register_block_type') ) return;
-                
-		// `Hero Content`
-		acf_register_block_type([
-			'name'				=> 'robo-hero-content',
-			'title'             => __('Robo: Hero Content Block'),
-			'description'       => __('A part of hero section with header, introduction and link.'),
-			'render_callback'   => [$this, 'robo_acf_block_render_callback'],
-			'category'          => 'layout',
-			'icon'              => 'format-aside',
-			'keywords'          => [ 'hero', 'text', 'quote' ]
-		]);
-
-		// Robo Img
-		// acf_register_block_type([
-		// 	'name'				=> 'robo-image',
-		// 	'title'             => __('Robo: Image'),
-		// 	'description'       => __('Image with additionals settings.'),
-		// 	'render_callback'   => [$this, 'robo_acf_block_render_callback'],
-		// 	'category'          => 'layout',
-		// 	'icon'              => 'format-image',
-		// 	'keywords'          => [ 'image', 'align', 'offset' ]
-		// ]);
-
 	}
 
-	public function robo_acf_block_render_callback( $block, $content = '', $is_preview = false ) {
-		// $context = Timber::context();
-	
-		// Store block values.
-		$vars['block'] = $block;
-	
-		// Store field values.
-		$vars['fields'] = get_fields();
-	
-		// Store $is_preview value.
-		$vars['is_preview'] = $is_preview;
-	
-		// convert name ("acf/testimonial") into path friendly slug ("testimonial")
-		$slug = str_replace('acf/', '', $block['name']);
-	
-		// Render the block.
-		Timber::render( 'templates/blocks/' . $block['name'] . '.twig', $vars );
-	}
-	
+	private function __addColors($color, $variants) {
+		/** 
+		 * Pattern:
+		 * [
+		 * 	'name'  => '',
+		 * 	'slug'  => '',
+		 * 	'color' => ''
+		 * ];
+		 * */
+
+		foreach($variants as $key => $value) {
+			$this->color_palette[] = [
+				'name' => $color . ' (' . $key . ')',
+				'slug' => strtolower($color) . '_' . $key,
+				'color' => $value
+			];
+		}
+	}	
 }
 
 new RoboSite();

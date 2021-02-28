@@ -15,14 +15,26 @@
 */
 @charset "UTF-8";
 @tailwind base;
+
+@layer base {
+  * {
+    --tw-bg-opacity: 1;
+  }
+}
 /** Tailwind components */
 @tailwind components;
 /** Tailwind utilities */
 @tailwind utilities;
 /** Extend utilities */
 @layer utilities {
+  .evmar_logo {
+    fill: #fff;
+  }
+  .footer-logo .evmar_logo {
+    fill: #000;
+  }
   #header {
-    @apply fixed top-0;
+    @apply relative top-0 z-20;
   }
   .admin-bar #header {
     @apply top-8;
@@ -30,33 +42,393 @@
   #header,
   #footer,
   #content {
-    @apply w-screen;
+    @apply w-full;
+  }
+  #content {
+    @apply z-0;
   }
   #header > .wrapper,
-  #footer > .wrapper {
+  #footer > .wrapper,
+  #footer_widgets > .wrapper {
     @apply max-w-screen-xl my-0 mx-auto;
   }
-
-  /**
-   * Blocks
-   */
-  /** cover - okładka */
-  #content .wp-block-cover,
-  #content .wp-block-cover-image {
-    @apply p-0;
+  #footer_widgets > .wrapper {
+    @apply flex flex-row justify-between justify-items-stretch py-6;
+  }
+  #footer_widgets > .wrapper > section {
+    @apply flex-auto px-6;
+  }
+  #footer_widgets > .wrapper > section:first-child {
+    @apply -ml-3;
+  }
+  #footer_widgets > .wrapper > section:last-child {
+    @apply -mr-3;
   }
 
-  #content .alignwide {
-    @apply w-full max-w-screen-xl my-0 mx-auto;
+  .hero-header {
+    font-size: 2.7rem;
+    line-height: 3.5rem;
   }
-  #content .alignfull {
-    @apply w-full max-w-full m-0;
+  .hero-intro {
+    font-size: 1.4rem;
+    line-height: 2rem;
+  }
+
+  /** Robo: Hero Content Block */
+  .hero-content-block.robo-hero-content
+    > .hero-content-wrapper
+    > .hero-content-heading {
+    margin-bottom: 1em;
   }
 
   /**
    * Buttons
    */
-  .button {
-    @apply w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md;
+  .btn {
+    @apply inline-block items-center justify-center border border-transparent text-base font-medium rounded-md;
+  }
+
+  /**
+   * Forms
+   */
+  .section-contact-form-wrapper .form-block .acf-fields > .acf-field {
+    @apply border-none;
+  }
+
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-label.acf-label
+    label {
+    @apply text-xs text-left text-gray-600 lowercase;
+  }
+
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    input,
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    textarea {
+    @apply text-xl border-t-0 border-l-0 border-r-0 border-b border-solid border-gray-600 bg-transparent text-gray-500 transition-colors ease-out duration-300;
+  }
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    input:focus,
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    textarea:focus {
+    @apply border-gray-400 text-gray-400;
+  }
+  /* checkbox */
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .acf-checkbox-list.acf-hl
+    label {
+    @apply relative text-gray-500 transition-colors ease-out duration-300 cursor-pointer;
+  }
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .acf-checkbox-list.acf-hl:focus
+    label,
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .acf-checkbox-list.acf-hl
+    label.selected {
+    @apply text-gray-400;
+  }
+  /* ---- hide original input field */
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .af-field.af-field-type-checkbox.af-field-policy-acceptance.acf-field.acf-field-checkbox
+    .acf-checkbox-list.acf-hl
+    label
+    input[type="checkbox"],
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-form-submit.af-submit
+    .acf-spinner.af-spinner,
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-form-submit.af-submit
+    .acf-loader {
+    width: auto;
+    opacity: 0.00000001;
+    position: absolute;
+    left: 0;
+    margin-left: -20px;
+  }
+  /* ---- artifical checkbox */
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field.acf-field-checkbox
+    .acf-input
+    ul
+    li
+    label::before {
+    content: " ";
+    @apply inline-block mr-3 w-5 h-5 bg-transparent border border-solid
+        border-gray-600 transition-colors ease-out duration-300 align-middle;
+  }
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field.acf-field-checkbox
+    .acf-input
+    ul
+    li
+    label:focus::before,
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field.acf-field-checkbox
+    .acf-input
+    ul
+    li
+    label.selected::before {
+    @apply border-gray-400;
+  }
+
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field.acf-field-checkbox
+    .acf-input
+    ul
+    li
+    label::after {
+    content: "\2713";
+    font-size: 1.5rem;
+    line-height: 0;
+    top: 9px;
+    @apply absolute left-0 text-gray-500 opacity-0 transition-all duration-300 ease-out delay-150;
+  }
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field.acf-field-checkbox
+    .acf-input
+    ul
+    li
+    label.selected::after {
+    @apply text-gray-400 opacity-100;
+  }
+
+  /**** SUBMIT *****/
+  .section-contact-form-wrapper
+    .form-block
+    form.acf-form
+    .acf-fields
+    > .acf-form-submit.af-submit {
+    @apply relative pt-12 pb-6 px-3 text-left;
+  }
+
+  .section-contact-form-wrapper
+    .form-block
+    form.acf-form
+    .acf-fields
+    > .acf-form-submit.af-submit
+    button.acf-button.af-submit-button {
+    @apply relative text-xl underline lowercase;
+  }
+
+  .section-contact-form-wrapper
+    .form-block
+    form.acf-form
+    .acf-fields
+    > .acf-form-submit.af-submit
+    button.acf-button.af-submit-button::before,
+  .section-contact-form-wrapper
+    .form-block
+    form.acf-form
+    .acf-fields
+    > .acf-form-submit.af-submit
+    button.acf-button.af-submit-button::after {
+    content: "";
+    top: 33%;
+    right: -35%;
+    @apply absolute block h-3 w-3 rounded-full bg-green-400 opacity-0 transition-opacity duration-300 ease-out;
+  }
+  .section-contact-form-wrapper
+    .form-block
+    form.acf-form
+    .acf-fields
+    > .acf-form-submit.af-submit
+    button.acf-button.af-submit-button::after {
+    @apply bg-opacity-90;
+  }
+
+  .section-contact-form-wrapper
+    .form-block
+    form.acf-form.is-validating
+    .acf-fields
+    > .acf-form-submit.af-submit
+    button.acf-button.af-submit-button::before {
+    @apply opacity-100;
+  }
+
+  .section-contact-form-wrapper
+    .form-block
+    form.acf-form.is-validating
+    .acf-fields
+    > .acf-form-submit.af-submit
+    button.acf-button.af-submit-button::after {
+    @apply animate-ping opacity-75;
+  }
+
+  /* errors */
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field.acf-error
+    .af-input.acf-input
+    input,
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field.acf-error
+    .af-input.acf-input
+    textarea,
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field.acf-error
+    .af-input.acf-input
+    .acf-error-message {
+    @apply border-red-500;
+  }
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field.acf-error
+    .af-input.acf-input
+    .acf-error-message,
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    .acf-error-message {
+    @apply text-red-500 bg-red-500 bg-opacity-10;
+  }
+  /*** success **/
+  .section-contact-form-wrapper .form-block .acf-form .af-success {
+    @apply border-solid border-l-2 border-green-400 p-6 bg-green-400 bg-opacity-10;
+  }
+  /* special - checbox label are now visible */
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .af-field.af-field-type-checkbox.af-field-policy-acceptance.acf-field.acf-field-checkbox
+    .af-label.acf-label {
+    display: none;
+  }
+
+  /**** placeholders ****/
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    input::-webkit-input-placeholder,
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    textarea::-webkit-input-placeholder {
+    @apply text-gray-600;
+  }
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    input::-moz-placeholder,
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    textarea::-moz-placeholder {
+    @apply text-gray-600;
+  }
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    input:-ms-input-placeholder,
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    textarea:-ms-input-placeholder {
+    @apply text-gray-600;
+  }
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    input:-moz-placeholder,
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    textarea:-moz-placeholder {
+    @apply text-gray-600;
+  }
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    input::placeholder,
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    textarea::placeholder {
+    @apply text-gray-600;
+  }
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    input:placeholder-shown,
+  .section-contact-form-wrapper
+    .form-block
+    .acf-fields
+    > .acf-field
+    .af-input.acf-input
+    textarea:placeholder-shown {
+    @apply text-gray-600;
   }
 }

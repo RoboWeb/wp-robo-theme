@@ -1,0 +1,37 @@
+{#
+  Title: Robo: Section
+  SupportsMultiple: true
+  SupportJSX: true
+  Category: formating
+  Mode: preview
+  Align: full
+  AlignText: center
+#}
+
+{% set bgColor =  fields.bg_color ?: 'transparent' %}
+{% set bgImage = fields.bg_image ? "url(#{fields.bg_image})" : "" %}
+{% set bgImageRepeat = fields.bg_image and fields.bg_image_repeat ? " repeat" : " no-repeat" %}
+
+<div id="{{ block.id }}" class="{{ classes }} block-{{ block.id }}" data-template="robo-section.twig">
+	<span>{{bgColor}}
+		|
+		{{ bgImage }}
+		|
+		{{bgImageRepeat}}
+	</span>
+	<InnerBlocks.DefaultBlockAppender/>
+</div>
+
+
+<style type="text/css">
+	.block-{{block.id}}{
+		display: block;
+		background: {{bgColor}}
+		{{bgImage}}
+		{{bgImageRepeat}}
+		top center;
+		background-size: cover;
+		min-height: 10em;
+		color: white;
+	}
+</style>

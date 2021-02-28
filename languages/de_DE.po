@@ -1,0 +1,149 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: WP Robo Theme\n"
+"POT-Creation-Date: 2021-02-28 10:48+0100\n"
+"PO-Revision-Date: 2021-02-28 10:56+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ../../../../../..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: \n"
+"Language: de_DE\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
+
+#: functions.php:229
+msgid "Extra small"
+msgstr "Extraklein"
+
+#: functions.php:230
+msgctxt "Font size"
+msgid "XS"
+msgstr "XS"
+
+#: functions.php:235
+msgid "Small"
+msgstr "Klein"
+
+#: functions.php:236
+msgctxt "Font size"
+msgid "S"
+msgstr "S"
+
+#: functions.php:241
+msgid "Normal"
+msgstr "Normal"
+
+#: functions.php:242
+msgctxt "Font size"
+msgid "M"
+msgstr "M"
+
+#: functions.php:247
+msgid "Large"
+msgstr "Groß"
+
+#: functions.php:248
+msgctxt "Font size"
+msgid "L"
+msgstr "L"
+
+#: functions.php:253
+msgid "Extra large"
+msgstr "Extragroß"
+
+#: functions.php:254
+msgctxt "Font size"
+msgid "XL"
+msgstr "XL"
+
+#: functions.php:259
+msgid "Huge"
+msgstr "Riesig"
+
+#: functions.php:260
+msgctxt "Font size"
+msgid "XXL"
+msgstr "XXL"
+
+#: functions.php:265
+msgid "Gigantic"
+msgstr "Gigantischen"
+
+#: functions.php:266
+msgctxt "Font size"
+msgid "XXXL"
+msgstr "XXXL"
+
+#: functions.php:293
+msgid "Primary menu"
+msgstr "Hauptmenü"
+
+#: functions.php:294
+msgid "Footer menu"
+msgstr "Fußzeilenmenü"
+
+#: functions.php:295
+msgid "Languages menu"
+msgstr "Sprachen-Menü"
+
+#: functions.php:296
+msgid "Social Links menu"
+msgstr "Social Links Menü"
+
+#: functions.php:307
+msgid "Bottom Sidebar"
+msgstr "Untere Seitenleiste"
+
+#: functions.php:309
+msgid "Add widgets here to appear in the bottom of the pages."
+msgstr "Fügen Sie hier Widgets hinzu, die am unteren Rand der Seiten angezeigt werden sollen."
+
+#: functions.php:316
+msgid "Sidebar"
+msgstr "Seitenleiste"
+
+#: functions.php:318
+msgid "Add widgets here to appear in the sidebar."
+msgstr "Fügen Sie hier Widgets hinzu, die in der Seitenleiste angezeigt werden sollen."
+
+#: functions.php:361
+msgid "Submit"
+msgstr "Senden"
+
+#: templates/base.twig:28
+msgid "Skip to content"
+msgstr "Zum Inhalt springen"
+
+#: templates/single.twig:9
+msgid "edit"
+msgstr "bearbeiten"
+
+#. Theme Name of the plugin/theme
+msgid "WP Robo Theme"
+msgstr "WP Robo Theme"
+
+#. Theme URI of the plugin/theme
+msgid "https://github.com/RoboWeb/wp-robo-theme"
+msgstr "https://github.com/RoboWeb/wp-robo-theme"
+
+#. Description of the plugin/theme
+msgid "WordPress, Timber based theme"
+msgstr "WordPress, Timber-basiertes Thema"
+
+#. Author of the plugin/theme
+msgid "Tomasz Wolny"
+msgstr "Tomasz Wolny"
+
+#. Author URI of the plugin/theme
+msgid "https://github.com/RoboWeb"
+msgstr "https://github.com/RoboWeb"

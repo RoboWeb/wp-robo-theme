@@ -1,0 +1,15 @@
+{#
+  Title: Section: Two rows
+  Description: A section with three columns
+#}
+
+{% set fields = section.section_two_rows %}
+
+<div class="section-content-wrapper w-full max-w-screen-xl mx-auto flex flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
+	{% if fields.first_row_fields %}
+		{{ include("sections/section-hero.twig", { section_hero: fields.first_row_fields }) }}
+	{% endif %}
+	{% if fields.second_row_fields %}
+		{% include "sections/section-three_columns.twig" with { section_three_columns: fields.second_row_fields } %}
+	{% endif %}
+</div>

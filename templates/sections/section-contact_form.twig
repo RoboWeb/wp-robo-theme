@@ -1,0 +1,20 @@
+{#
+  Title: Section: Contact Form
+  Description: A section with big image on background. Can be include only inside the section
+#}
+
+{% set fields = section.section_contact_form %}
+
+
+<div id="contact_form_{{ fields.form[0] }}" class="section-contact-form-wrapper w-full max-w-screen-xl mx-auto flex md:flex-row flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
+
+	<div class="block content-block flex-1 self-center pr-8">
+		{% include "blocks/content-block.twig" with { 'content': fields.content} %}
+	</div>
+	<div class="block form-block flex-0 md:w-3/5 w-1/2">
+
+		{{ renderForm(fields.form[0]) }}
+
+	</div>
+
+</div>

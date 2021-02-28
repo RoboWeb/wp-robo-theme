@@ -3,7 +3,7 @@ module.exports = {
     require("tailwindcss"),
     require("autoprefixer"),
     require("@fullhuman/postcss-purgecss")({
-      content: ["**/*.twig"],
+      content: ["functions.php", "**/*.twig"],
       defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
     }),
   ],

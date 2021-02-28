@@ -1,6 +1,14 @@
 @charset "UTF-8";
 
 @tailwind base;
+
+@layer base {
+  *,
+  :root {
+    --tw-bg-opacity: 1;
+  }
+}
+
 @tailwind components;
 @tailwind utilities;
 
@@ -24,6 +32,12 @@
     margin: 5px auto;
   }
 
+  .block-editor-block-list__block .block-list-appender {
+    max-width: 1280px;
+    width: 100%;
+    margin: 4px auto;
+  }
+
   .wp-block-columns
     .block-editor-block-list__block.wp-block-column:not(:first-child) {
     margin-left: 10px;
@@ -38,27 +52,76 @@
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   }
 
+  .wp-block-cover
+    .wp-block-cover__inner-container
+    .wp-block-columns
+    .wp-block-column.light_column {
+    @apply bg-gray-300;
+  }
+  .wp-block-cover
+    .wp-block-cover__inner-container
+    .wp-block-columns
+    .wp-block-column.dark_column {
+    @apply bg-gray-700;
+  }
+
+  /** Robo: Hero Content Block */
+  .hero-content-block .hero-content-wrapper .hero-content-heading {
+    @apply mb-4;
+  }
+
+  /** Colors */
+  .has-transparent-background-color {
+    @apply bg-transparent;
+  }
+  .has-current-background-color {
+    @apply bg-current;
+  }
+  .has-black-background-color {
+    @apply bg-black;
+  }
+  .has-white-background-color {
+    @apply bg-white;
+  }
+  .has-gray-200-background-color {
+    @apply bg-gray-200;
+  }
+  .has-gray-300-background-color {
+    @apply bg-gray-300;
+  }
+  .has-gray-400-background-color {
+    @apply bg-gray-400;
+  }
+  .has-gray-500-background-color {
+    @apply bg-gray-500;
+  }
+  .has-gray-600-background-color {
+    @apply bg-gray-600;
+  }
+  .has-gray-700-background-color {
+    @apply bg-gray-700;
+  }
   /** fonts */
   .has-extra-small-font-size {
-    font-size: 0.8em;
+    @apply text-xs;
   }
   .has-small-font-size {
-    font-size: 0.9em;
+    @apply text-sm;
   }
   .has-normal-font-size {
-    font-size: 1em;
+    @apply text-base;
   }
   .has-large-font-size {
-    font-size: 1.3em;
+    @apply text-xl;
   }
   .has-extra-large-font-size {
-    font-size: 40px;
+    @apply text-5xl;
   }
 
   /**
    * Buttons
    */
-  .button {
-    @apply w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md;
+  .btn {
+    @apply items-center justify-center border border-transparent text-base font-medium rounded-md;
   }
 }

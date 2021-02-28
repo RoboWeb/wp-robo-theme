@@ -1,0 +1,38 @@
+{#
+  Title: Block: Content
+  Description: A pcontent block with title, introduction, link (in/out)
+#}
+
+{% set header_classes = "hero-header mb-16" %}
+{% set intro_classes = "hero-intro mb-16" %}
+{% set block_classes = "" %}
+
+{% if parent_is == "section_three-columns" %}
+	{% set header_classes = "text-2xl underline flex-0 mb-16" %}
+	{% set intro_classes = "hero-intro flex-1 mb-12" %}
+	{% set block_classes = " flex flex-col justify-between h-full" %}
+{% endif %}
+
+
+<div class="block-content-wrapper text-left{{ block_classes }}">
+	{% if content.title %}
+		{% set font_size = content.title_font_size ? "font-size: #{content.title_font_size / 100}rem; " : ""  %}
+		{% set font_color = content.title_text_color ? "color: #{content.title_text_color};" : ""  %}
+		{% set style = "" ~ (font_size or font_color ? 'style="' ~ font_size ~ font_color ~ '"' : "") %}
+		<h2 class="block-content-title font-bold w-4/5 {{ header_classes }}" {{style}}>{{ content.title }}</h2>
+	{% endif %}
+	{% if content.introduction %}
+		{% set font_size = content.introduction_font_size ? "font-size: #{content.introduction_font_size / 100}rem; " : ""  %}
+		{% set font_color = content.introduction_text_color ? "color: #{content.introduction_text_color};" : ""  %}
+		{% set style = "" ~ (font_size or font_color ? 'style="' ~ font_size ~ font_color ~ '"' : "") %}
+		<div class="block-content-intro {{ intro_classes }}" {{style}}>{{ content.introduction }}</div>
+	{% endif %}
+	{% if content.link %}
+		{% set font_size = content.link_font_size ? "font-size: #{content.link_font_size / 100}rem; " : ""  %}
+		{% set font_color = content.link_text_color ? "color: #{content.link_text_color};" : ""  %}
+		{% set style = "" ~ (font_size or font_color ? 'style="' ~ font_size ~ font_color ~ '"' : "") %}
+		<a href="{{ content.link.url }}" target="{{ content.link.target ?: "_self" }}" class="lowercase underline hero-intro" {{style}}>
+			{{ content.link.title ?: "read more" }}
+		</a>
+	{% endif %}
+</div>

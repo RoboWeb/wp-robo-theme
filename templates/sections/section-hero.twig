@@ -1,0 +1,25 @@
+{#
+  Title: Section: Hero
+  Description: A section with big image on background. Can be include only inside the section
+#}
+
+{% set fields = section.section_hero %}
+
+
+<div class="section-content-wrapper w-full max-w-screen-xl mx-auto flex md:flex-row flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
+	{% if fields.block_order == 'content_first' %}
+		<div class="block content-block flex-1 self-center pr-8">
+			{% include "blocks/content-block.twig" with { 'content': fields.content} %}
+		</div>
+		<div class="block image-block flex-0 md:w-2/5 w-1/2">
+			{% include "blocks/image-block.twig" with { 'image': fields.hero_image } %}
+		</div>
+	{% else %}
+		<div class="block image-block flex-0 md:w-2/5 w-1/2">
+			{% include "blocks/image-block.twig" with { 'image': fields.hero_image } %}
+		</div>
+		<div class="block content-block flex-1 self-center pl-8">
+			{% include "blocks/content-block.twig" with { 'content': fields.content } %}
+		</div>
+	{% endif %}
+</div>
