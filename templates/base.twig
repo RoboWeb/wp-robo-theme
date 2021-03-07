@@ -7,7 +7,7 @@
 	<head>
 		<meta charset="{{ site.charset }}"/>
 		<meta name="description" content="{{ site.description }}">
-		<link rel="stylesheet" href="{{ site.theme.link }}/style.min.css?v=20210228.1747" type="text/css" media="screen"/>
+		<link rel="stylesheet" href="{{ site.theme.link }}/style.css?v=20210307.1321" type="text/css" media="screen"/>
 
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,13 +47,23 @@
 						</svg>
 					</a>
 
-					<nav id="nav-main" class="nav-main flex-grow" role="navigation">
+					<nav id="nav-main" class="nav-main flex-1" role="navigation">
 						{% include "menu.twig" with {'items': menu.primary.get_items} %}
 					</nav>
 					<!-- #nav -->
 
-					<nav id="nav-langs" class="nav-langs flex-0 w-1/12" role="navigation">
-						{% include "menu.twig" with {'items': menu.langs.get_items} %}
+					<nav id="nav-langs" class="nav-langs flex-0 w-2/12" role="navigation">
+						<ul class="navigation">
+							{% for key, lang in langs %}
+								<li class="nav-item {{ lang.current_lang ? 'is-current' : '' }}">
+									{% if lang.current_lang %}
+										<span class="h-full flex flex-wrap content-center px-1 lowercase text-gray-300">{{ key }}</span>
+									{% else %}
+										<a class="h-full flex flex-wrap content-center px-1 lowercase font-bold text-gray-300 hover:text-gray-500 focus:outline-none" href="{{ lang.url }}">{{ key }}</a>
+									{% endif %}
+								</li>
+							{% endfor %}
+						</ul>
 					</nav>
 				</div>
 			{% endblock %}
@@ -64,10 +74,11 @@
 				<h1>{{title}}</h1>
 			{% endif %}
 			<div class="wrapper {{sidebar_class}}">
+				<!-- twig-block: content -->
 				{% block content %}
 					Sorry, no content
 				{% endblock %}
-				<!-- /block: content -->
+				<!-- //twig-block: content -->
 			</div>
 			{% if sidebar %}
 				<aside class="layout-sidebar">
@@ -88,4 +99,4 @@
 			{{ function('wp_footer') }}
 		{% endblock %}
 	</body>
-</html>
+</html></body></html>

@@ -1,7 +1,8 @@
 <ul class="navigation">
 	{% for item in items %}
+		{% set target = item.target ? 'target="#{item.target}"' : '' %}
 		<li class="{{ item.classes | join(' ') }} nav-item">
-			<a class="h-full flex flex-wrap content-center px-1 lowercase text-gray-300 hover:text-gray-500" target=" {{ item.target }} " href=" {{ item.link }} ">{{ item.title }}</a>
+			<a class="h-full flex flex-wrap content-center px-1 lowercase text-gray-300 hover:text-gray-500 focus:outline-none" {{ target }} href=" {{ item.link }} ">{{ item.title }}</a>
 			{% if item.children %}
 				{% include "menu.twig" with {'items': item.children} %}
 			{% endif %}

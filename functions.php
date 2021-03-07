@@ -6,6 +6,7 @@
 /** Defines  */
 define( 'ROBO_THEME_DIR', get_template_directory() );
 define( 'ROBO_THEME_URL', get_stylesheet_directory_uri() );
+define( 'GOOGLE_MAP_API_KEY', 'AIzaSyBle18YiP8NvmXQQTHDz2oxbRvbiwZVaWM');
 
 /**
  * If you are installing Timber as a Composer dependency in your theme, you'll need this block
@@ -117,9 +118,9 @@ class RoboSite extends Timber\Site {
 		$context['menu'] = [
 			'primary'	=> new Timber\Menu('primary'),
 			'footer' 	=> new Timber\Menu('footer'),
-			'langs' 	=> new Timber\Menu('langs'),
 			'social' 	=> new Timber\Menu('social')
 		];
+		$context['langs'] = pll_the_languages(['raw' => 1]);
 
 		$context['bottom_widgets'] = Timber::get_widgets( 'sidebar-bottom' );
 		$context['site'] = $this;
@@ -379,8 +380,13 @@ class RoboSite extends Timber\Site {
 
 	/** Robo ACF init */
 	public function robo_acf_init() {
+		
+		// Register Google API Key
+		acf_update_setting('google_api_key', GOOGLE_MAP_API_KEY);
+
 		// sprawdzamy czy funkcja istnieje
         if( !function_exists('acf_register_block_type') ) return;
+
 	}
 
 	private function __addColors($color, $variants) {

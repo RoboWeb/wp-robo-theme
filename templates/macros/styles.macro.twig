@@ -1,0 +1,3 @@
+{% macro single(styleName, fieldValue, valueSuffix = "px") %}
+	{% if fieldValue %}{{ styleName }}: {{ fieldValue }}{{ valueSuffix }}; {% endif %}
+{% endmacro %}

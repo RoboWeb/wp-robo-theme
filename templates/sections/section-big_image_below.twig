@@ -2,43 +2,79 @@
   Title: Section: Two rows
   Description: A section with three columns
 #}
+{% import "macros/styles.macro.twig" as _style %}
 
 {% set fields = section.section_big_image_below %}
 
 <div class="section-content-wrapper w-full max-w-screen-xl mx-auto flex flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
-
+	<!-- section: big image below -->
 	{% if fields.content.title or fields.content.introduction %}
 		<div class="row flex flex-row items-stretch">
 			{% if fields.content.title %}
-				<div class="column text-left flex-0 w-5/12 pr-12">
-					<h2 class="block-content-title font-bold text-5xl">{{ fields.content.title }}</h2>
+				<div class="column text-left flex-0 w-5/12 {{ fields.content.introduction ? "pr-12" : "" }}">
+						{% set offsets = fields.content.offsets_of.title %}
+						{% set style = "" ~ 'style="' 
+							~ _style.single("font-size", (fields.content.title_font_size ? fields.content.title_font_size / 100 : false), "rem") 
+							~ _style.single("font-color", fields.content.title_text_color, "")
+							~ _style.single("margin-top", offsets.margins.top)
+							~ _style.single("margin-right", offsets.margins.right)
+							~ _style.single("margin-bottom", offsets.margins.bottom)
+							~ _style.single("margin-left", offsets.margins.left)
+							~ _style.single("pading-top", offsets.padings.top)
+							~ _style.single("pading-right", offsets.padings.right)
+							~ _style.single("pading-bottom", offsets.padings.bottom)
+							~ _style.single("pading-left", offsets.padings.left)
+							~ '"'
+						%}
+					<h2 class="block-content-title font-bold text-xl" {{style}}>{{ fields.content.title }}</h2>
 				</div>
 			{% endif %}
 			{% if fields.content.introduction %}
-				<div class="column text-left flex-1 text-left pl-12">
-					<p class="block-content-intro text-xl">{{ fields.content.introduction }}</p>
+				{% set offsets = fields.content.offsets_of.introduction %}
+				{% set style = "" ~ 'style="' 
+					~ _style.single("font-size", (fields.content.introduction_font_size ? fields.content.introduction_font_size / 100 : false), "rem") 
+					~ _style.single("font-color", fields.content.introduction_text_color, "")
+					~ _style.single("margin-top", offsets.margins.top)
+					~ _style.single("margin-right", offsets.margins.right)
+					~ _style.single("margin-bottom", offsets.margins.bottom)
+					~ _style.single("margin-left", offsets.margins.left)
+					~ _style.single("pading-top", offsets.padings.top)
+					~ _style.single("pading-right", offsets.padings.right)
+					~ _style.single("pading-bottom", offsets.padings.bottom)
+					~ _style.single("pading-left", offsets.padings.left)
+					~ '"'
+				%}
+				<div class="column text-left flex-1 text-left {{ fields.content.title ? "pl-12" : "" }}">
+					<div class="block-content-intro text-base" {{ style }}>{{ fields.content.introduction }}</div>
+					{% if fields.content.link %}
+						{% set offsets = fields.content.offsets_of.link %}
+						{% set style = "" ~ 'style="' 
+							~ _style.single("font-size", (fields.content.link_font_size ? fields.content.link_font_size / 100 : false), "rem") 
+							~ _style.single("font-color", fields.content.link_text_color, "")
+							~ _style.single("margin-top", offsets.margins.top)
+							~ _style.single("margin-right", offsets.margins.right)
+							~ _style.single("margin-bottom", offsets.margins.bottom)
+							~ _style.single("margin-left", offsets.margins.left)
+							~ _style.single("pading-top", offsets.padings.top)
+							~ _style.single("pading-right", offsets.padings.right)
+							~ _style.single("pading-bottom", offsets.padings.bottom)
+							~ _style.single("pading-left", offsets.padings.left)
+							~ '"'
+						%}
+						<a href="{{ fields.content.link.url }}" target="{{ fields.content.link.target ?: "_self" }}" class="lowercase underline hero-intro" {{style}}>
+							{{ fields.content.link.title ?: "read more" }}
+						</a>
+					{% endif %}
 				</div>
 			{% endif %}
-			{# 
-										{% if content.link %}
-											<a href="{{ content.link.url }}" target="{{ content.link.target ?: "_self" }}" class="lowercase underline hero-intro">
-												{{ content.link.title ?: "read more" }}
-											</a>
-										{% endif %}
-									#}
-			<!-- 
-									{% for key, value in fields.content %}																
-									[{{ key }}]:
-									{{ value }}
-									{% endfor %} 
-									-->
 		</div>
 	{% endif %}
-	{% if fields.big_image %}
+	{% if fields.big_image and fields.big_image.image %}
 		<div class="row">
 			<div class="column">
 				{% include "blocks/image-block.twig" with { 'image': fields.big_image } %}
 			</div>
 		</div>
 	{% endif %}
+	<!-- //section: big image below -->
 </div>

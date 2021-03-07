@@ -7,6 +7,7 @@
 
 
 <div class="section-content-wrapper w-full max-w-screen-xl mx-auto flex md:flex-row flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
+	<!-- section: hero -->
 	{% if fields.block_order == 'content_first' %}
 		<div class="block content-block flex-1 self-center pr-8">
 			{% include "blocks/content-block.twig" with { 'content': fields.content} %}
@@ -22,4 +23,5 @@
 			{% include "blocks/content-block.twig" with { 'content': fields.content } %}
 		</div>
 	{% endif %}
+	<!-- //section: hero -->
 </div>
