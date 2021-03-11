@@ -6,12 +6,13 @@
 {% set fields = section.section_contact_form %}
 
 
-<div id="contact_form_{{ fields.form[0] }}" class="section-contact-form-wrapper w-full max-w-screen-xl mx-auto flex md:flex-row flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
+<div
+	id="contact_form_{{ fields.form[0] }}" class="section-contact-form-wrapper w-full max-w-screen-xl mx-auto flex md:flex-row flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
 	<!-- section: contact_form -->
 	<div class="block content-block flex-1 pr-8">
 		{% include "blocks/content-block.twig" with { 'content': fields.content} %}
 	</div>
-	<div class="block form-block flex-0 md:w-3/5 w-1/2">
+	<div class="block form-block flex-grow-0 md:w-3/5 lg:w-1/2 w-full">
 		{{ renderForm(fields.form[0]) }}
 	</div>
 	<!-- //section: contact_form -->

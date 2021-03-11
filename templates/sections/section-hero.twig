@@ -6,20 +6,21 @@
 {% set fields = section.section_hero %}
 
 
-<div class="section-content-wrapper w-full max-w-screen-xl mx-auto flex md:flex-row flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
+<div
+	class="section-content-wrapper w-full max-w-screen-xl mx-auto flex md:flex-row flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
 	<!-- section: hero -->
 	{% if fields.block_order == 'content_first' %}
 		<div class="block content-block flex-1 self-center pr-8">
 			{% include "blocks/content-block.twig" with { 'content': fields.content} %}
 		</div>
-		<div class="block image-block flex-0 md:w-2/5 w-1/2">
+		<div class="block image-block flex-grow-0 md:w-2/5 w-10/12 mx-auto">
 			{% include "blocks/image-block.twig" with { 'image': fields.hero_image } %}
 		</div>
 	{% else %}
-		<div class="block image-block flex-0 md:w-2/5 w-1/2">
+		<div class="block image-block flex-grow-0 md:w-2/5 w-10/12 mx-auto">
 			{% include "blocks/image-block.twig" with { 'image': fields.hero_image } %}
 		</div>
-		<div class="block content-block flex-1 self-center pl-8">
+		<div class="block content-block flex-1 self-center md:pl-8 md:pr-0 px-12">
 			{% include "blocks/content-block.twig" with { 'content': fields.content } %}
 		</div>
 	{% endif %}

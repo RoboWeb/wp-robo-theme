@@ -8,13 +8,14 @@
 {% set fields = section.section_simple_content %}
 
 
-<div class="section-content-wrapper w-full max-w-screen-xl mx-auto flex md:flex-row flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
+<div
+	class="section-content-wrapper w-full max-w-screen-xl mx-auto flex md:flex-row flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
 	<!-- section: simple -->
-	<div class="row flex-1 flex flex-row items-stretch">
+	<div class="row flex-1 flex md:flex-row flex-col items-stretch">
 		{% if fields.content.title %}
-			<div class="column text-left flex-0 w-5/12 {{ fields.content.introduction ? "pr-12" : "" }}">
-					{% set offsets = fields.content.offsets_of.title %}
-					{% set style = "" ~ 'style="' 
+			<div class="column text-left flex-grow-0 w-5/12 md:mb-0 mb-12 {{ fields.content.introduction ? " pr-12" : " " }}">
+				{% set offsets = fields.content.offsets_of.title %}
+				{% set style = "" ~ 'style="' 
 						~ _style.single("font-size", (fields.content.title_font_size ? fields.content.title_font_size / 100 : false), "rem") 
 						~ _style.single("font-color", fields.content.title_text_color, "")
 						~ _style.single("margin-top", offsets.margins.top)
@@ -27,7 +28,7 @@
 						~ _style.single("pading-left", offsets.padings.left)
 						~ '"'
 					%}
-				<h2 class="block-content-title font-bold text-xl" {{style}}>{{ fields.content.title }}</h2>
+				<h2 class="block-content-title font-bold lg:text-xl text-lg leading-none md:mb-0 mb-12" {{style}}>{{ fields.content.title }}</h2>
 			</div>
 		{% endif %}
 		{% if fields.content.introduction %}
@@ -45,7 +46,7 @@
 				~ _style.single("pading-left", offsets.padings.left)
 				~ '"'
 			%}
-			<div class="column text-left flex-1 text-left {{ fields.content.title ? "pl-12" : "" }}">
+			<div class="column text-left flex-1 text-left {{ fields.content.title ? " md:pl-12 pl-0" : " " }}">
 				<div class="block-content-intro text-base" {{ style }}>{{ fields.content.introduction }}</div>
 				{% if fields.content.link %}
 					{% set offsets = fields.content.offsets_of.link %}

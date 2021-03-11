@@ -2,6 +2,14 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    screens: {
+      xs: "309px",
+      sm: "640px",
+      md: "709px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1329px",
+    },
     fontSize: {
       xs: ["10px", "1.5em"],
       sm: ["12px", "1.5em"],

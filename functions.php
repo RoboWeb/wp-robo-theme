@@ -68,12 +68,13 @@ class RoboSite extends Timber\Site {
 		add_action( 'widgets_init', [ $this, 'robo_widgets_init' ] );
 		add_filter( 'timber/context', [ $this, 'add_to_context' ] );
 		add_filter( 'timber/twig', [ $this, 'add_to_twig' ] );
-		// add_filter( 'timber/acf-gutenberg-blocks-templates', [$this, 'robo_block_templates'] );
 
 		add_action( 'init', [ $this, 'register_post_types' ] );
 		add_action( 'init', [ $this, 'register_taxonomies' ] );
-		// add_action( 'init', [ $this, 'robo_gutemberg_style']);
+
 		add_action( 'acf/init', [$this, 'robo_acf_init']);
+
+		add_action( 'wp_enqueue_scripts', [$this, 'robo_jscipts'] );
 
 		// remove styles of advanced forms
 		// wp_dequeue_style( 'af-form-style' );
@@ -94,6 +95,16 @@ class RoboSite extends Timber\Site {
 
 		parent::__construct();
 	}
+	/** REgister js scripts */
+	public function robo_jscipts() {
+		wp_enqueue_script(
+			'robo_js',
+			get_theme_file_uri( '/static/js/main.js' ),
+			[],
+			'20210309.1954',
+			true
+		);
+	}
 	/** This is where you can register custom post types. */
 	public function register_post_types() {
 
@@ -112,8 +123,13 @@ class RoboSite extends Timber\Site {
 		$context['reprezentuj'] = 'Reprezentuj';
 
 		$context['custom_logo'] = [
-			'max_width' => 150,
-			'max_height' => 60
+			'max' => [
+				'width' => 150,
+				'height' => 96
+			],
+			'min' => [
+				'width' => 120,
+				"height" => 76			]
 		];
 		$context['menu'] = [
 			'primary'	=> new Timber\Menu('primary'),

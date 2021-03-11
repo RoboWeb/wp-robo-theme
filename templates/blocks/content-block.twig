@@ -5,18 +5,19 @@
 
 {% import "macros/styles.macro.twig" as _style %}
 
-{% set header_classes = "hero-header mb-16" %}
+{% set header_classes = "hero-header mb-12 text-lg leading-tight lg:text-xl mt-12 lg:mt-0" %}
 {% set intro_classes = "hero-intro " ~ ( content.link ? "mb-12" : "") %}
 {% set block_classes = "" %}
 
 {% if parent_is == "section_three-columns" %}
-	{% set header_classes = (content.is_wider ? "hero-header" : "text-lg underline" ) ~ " flex-0 mb-16" %}
-	{% set intro_classes = "hero-intro flex-1" ~ ( content.link ? "mb-12" : "") %}
-	{% set block_classes = " flex flex-col justify-between h-full" %}
+	{% set header_classes = (content.is_wider ? "hero-header lg:text-xl text-lg leading-none" : "text-lg underline" ) ~ " flex-grow-0 mb-12" %}
+	{% set intro_classes = "hero-intro flex-grow" ~ ( content.link ? " mb-12" : "") %}
+	{% set block_classes = " flex flex-col justify-start h-full" %}
 {% endif %}
 
 
-<div class="block-content-wrapper text-left{{ block_classes }}">
+<div
+	class="block-content-wrapper text-left{{ block_classes }}">
 	<!-- block: content-block {{parent_is}} -->
 	{% if content.title %}
 		{% set offsets = content.offsets_of.title %}
@@ -33,7 +34,7 @@
 							~ _style.single("pading-left", offsets.padings.left)
 							~ '"'
 		%}
-		<h2 class="block-content-title font-bold w-4/5 h-24 {{ header_classes }}" {{style}}>{{ content.title }}</h2>
+		<h2 class="block-content-title font-bold w-4/5 md:h-24 h-auto {{ header_classes }}" {{style}}>{{ content.title }}</h2>
 	{% endif %}
 	{% if content.introduction %}
 		{% set offsets = content.offsets_of.introduction %}
@@ -50,7 +51,7 @@
 							~ _style.single("pading-left", offsets.padings.left)
 							~ '"'
 		%}
-		<div class="block-content-intro {{ intro_classes }}" {{style}}>{{ content.introduction }}</div>
+		<div class="block-content-intro md:mb-0 mb-12 {{ intro_classes }}" {{style}}>{{ content.introduction }}</div>
 	{% endif %}
 	{% if content.link %}
 		{% set offsets = content.offsets_of.introduction %}
@@ -67,12 +68,12 @@
 							~ _style.single("pading-left", offsets.padings.left)
 							~ '"'
 		%}
-		<a href="{{ content.link.url }}" target="{{ content.link.target ?: "_self" }}" class="lowercase underline hero-intro" {{style}}>
+		<a href="{{ content.link.url }}" target="{{ content.link.target ?: "_self" }}" class="lowercase underline hero-intro justify-self-end flex-grow-0" {{style}}>
 			{{ content.link.title ?: "read more" }}
 		</a>
 	{% endif %}
-	{% if content.image %}
+	{% if content.image.image %}
 		{% include "blocks/image-block.twig" with { 'image': content.image } %}
 	{% endif %}
-	<!-- //block: content-block {{parent_is}} -->
+	<!-- //block: content-block - {{parent_is}} - {{ content.image.image }} -->
 </div>
