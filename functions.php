@@ -65,6 +65,9 @@ class RoboSite extends Timber\Site {
 	public function __construct() {
 		add_action( 'after_setup_theme', [ $this, 'robo_theme_setup' ] );
 		add_action( 'after_setup_theme', [ $this, 'robo_menus_register' ] );
+
+		add_action('phpmailer_init', [$this, 'robo_phpmailer_init']);
+
 		add_action( 'widgets_init', [ $this, 'robo_widgets_init' ] );
 		add_filter( 'timber/context', [ $this, 'add_to_context' ] );
 		add_filter( 'timber/twig', [ $this, 'add_to_twig' ] );
@@ -402,6 +405,23 @@ class RoboSite extends Timber\Site {
 
 		// sprawdzamy czy funkcja istnieje
         if( !function_exists('acf_register_block_type') ) return;
+		// Check function exists.
+		if( function_exists('acf_add_options_page') ) {
+
+			// Add parent.
+			$parent = acf_add_options_page(array(
+				'page_title'  => __('Page General Settings'),
+				'menu_title'  => __('Site Settings'),
+				'redirect'    => false,
+			));
+	
+			// Add sub page.
+			$child = acf_add_options_page(array(
+				'page_title'  => __('Form Subbmission Settings'),
+				'menu_title'  => __('SMTP E-mail Account'),
+				'parent_slug' => $parent['menu_slug'],
+			));
+		}
 
 	}
 
@@ -423,6 +443,18 @@ class RoboSite extends Timber\Site {
 			];
 		}
 	}	
+
+	/** Robo PHPMailer config */
+	public function robo_phpmailer_init($pm) {
+		// $pm -> phpmailer
+		$pm->Host = 'smtp.dpoczta.pl';
+		$pm->Port = 587;
+		$pm->Username = 'wpapp.admin@roboweb.eu'; // your SMTP username
+		$pm->Password = '8foC9jUy5D'; // your SMTP password
+		$pm->SMTPAuth = true; 
+		$pm->SMTPSecure = 'tls'; // preferable but optional
+		$pm->IsSMTP();
+	}
 }
 
 new RoboSite();
