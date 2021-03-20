@@ -8,23 +8,23 @@
 {% set col_2_wide_classes = fields.median_column.is_wider and not fields.left_column.is_wider ? " flex-grow-0 w-5/12" : " flex-1" %}
 {% set col_3_wide_classes = fields.right_column.is_wider and not fields.left_column.is_wider and not fields.median_column.is_wider ? " flex-grow-0 w-5/12" : " flex-1" %}
 {% set all_columns_are_equal = not fields.left_column.is_wider and not fields.median_column.is_wider and not fields.right_column.is_wider %}
-
+{% set animation_classes = animation_on ? " scrollme animateme " : "" %}
 
 <div
 	class="section-content-wrapper w-full max-w-screen-xl mx-auto flex md:flex-row flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
-	<!-- section: three_columns -->
+	<!-- section: three_columns - animation {{ animation_on }} -->
 	{% if fields.left_column %}
-		<div class="column column-first px-12 md:py-16 py-12 md:-ml-12 ml-0{{ col_1_wide_classes }}">
+		<div class="column column-first px-12 md:py-16 py-12 md:-ml-12 ml-0{{ col_1_wide_classes }}{{animation_classes}}" data-when="enter" data-from="0.5" data-to="0" data-crop="false" data-opacity="0" data-scale="1.5" data-translatex="-400">
 			{% include "blocks/content-block.twig" with { 'content': fields.left_column, parent_is: "section_three-columns" } %}
 		</div>
 	{% endif %}
 	{% if fields.median_column %}
-		<div class="column px-12 py-16{{ col_2_wide_classes }}{{ all_columns_are_equal ? " md:mx-16 mx-0" : " " }}" style="{{ fields.median_column.column_bg_color ? "background-color: #{fields.median_column.column_bg_color};" : "" }}{{fields.median_column.column_txt_color ? "color: #{fields.median_column.column_txt_color};" : ""}}">
+		<div class="column px-12 py-16{{ col_2_wide_classes }}{{ all_columns_are_equal ? " md:mx-16 mx-0" : " " }}{{animation_classes}}" data-when="enter" data-from="0.8" data-to="0" data-crop="false" data-opacity="0" data-scale="1.5" style="{{ fields.median_column.column_bg_color ? "background-color: #{fields.median_column.column_bg_color};" : "" }}{{fields.median_column.column_txt_color ? "color: #{fields.median_column.column_txt_color};" : ""}}">
 			{% include "blocks/content-block.twig" with { content: fields.median_column, parent_is: "section_three-columns" } %}
 		</div>
 	{% endif %}
 	{% if fields.right_column %}
-		<div class="column column-last px-12 py-16 md:-mr-12 mr-0{{ col_3_wide_classes }}">
+		<div class="column column-last px-12 py-16 md:-mr-12 mr-0{{ col_3_wide_classes }}{{ animation_classes }}" data-when="enter" data-from="0.6" data-to="0" data-crop="false" data-opacity="0" data-scale="1.5" data-translatex="400">
 			{% include "blocks/content-block.twig" with { 'content': fields.right_column, parent_is: "section_three-columns" } %}
 		</div>
 	{% endif %}

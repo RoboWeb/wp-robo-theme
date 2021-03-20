@@ -104,7 +104,14 @@ class RoboSite extends Timber\Site {
 			'robo_js',
 			get_theme_file_uri( '/static/js/main.js' ),
 			[],
-			'20210309.1954',
+			'20210318.2103.9',
+			true
+		);
+		wp_enqueue_script(
+			'robo_scrollme_js',
+			get_theme_file_uri( '/static/js/jquery.scrollme.min.js' ),
+			['jquery'],
+			'1.1.0',
 			true
 		);
 	}
@@ -127,7 +134,7 @@ class RoboSite extends Timber\Site {
 
 		$context['custom_logo'] = [
 			'max' => [
-				'width' => 150,
+				'width' => 250,
 				'height' => 96
 			],
 			'min' => [
@@ -447,12 +454,12 @@ class RoboSite extends Timber\Site {
 	/** Robo PHPMailer config */
 	public function robo_phpmailer_init($pm) {
 		// $pm -> phpmailer
-		$pm->Host = 'smtp.dpoczta.pl';
-		$pm->Port = 587;
-		$pm->Username = 'wpapp.admin@roboweb.eu'; // your SMTP username
-		$pm->Password = '8foC9jUy5D'; // your SMTP password
+		$pm->Host = get_field('host', 'options') ?: 'smtp.dpoczta.pl';
+		$pm->Port = get_field('port', 'options') ?: 587;
+		$pm->Username = get_field('email_account_username', 'options') ?: 'wpapp.admin@roboweb.eu'; // your SMTP username
+		$pm->Password = get_field('email_account_password', 'options') ?: '8foC9jUy5D'; // your SMTP password
 		$pm->SMTPAuth = true; 
-		$pm->SMTPSecure = 'tls'; // preferable but optional
+		$pm->SMTPSecure = get_field('smtp_auth', 'options') ?: 'tls'; // preferable but optional
 		$pm->IsSMTP();
 	}
 }

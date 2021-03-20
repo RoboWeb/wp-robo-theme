@@ -51,7 +51,7 @@
 							~ _style.single("pading-left", offsets.padings.left)
 							~ '"'
 		%}
-		<div class="block-content-intro md:mb-0 mb-12 {{ intro_classes }}" {{style}}>{{ content.introduction }}</div>
+		<div class="block-content-intro {{ intro_classes }}" {{style}}>{{ content.introduction }}</div>
 	{% endif %}
 	{% if content.link %}
 		{% set offsets = content.offsets_of.introduction %}
@@ -68,7 +68,7 @@
 							~ _style.single("pading-left", offsets.padings.left)
 							~ '"'
 		%}
-		<a href="{{ content.link.url }}" target="{{ content.link.target ?: "_self" }}" class="lowercase underline hero-intro justify-self-end flex-grow-0" {{style}}>
+		<a href="{{ content.link.url }}" target="{{ content.link.target ?: "_self" }}" class="lowercase underline hero-intro justify-self-end flex-grow-0 pt-4" {{style}}>
 			{{ content.link.title ?: "read more" }}
 		</a>
 	{% endif %}

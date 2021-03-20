@@ -12,10 +12,10 @@
 {% set padding_top      = section.section_padding_top ? "padding-top: #{section_index in [0] ? section.section_padding_top + 96 : section.section_padding_top}px; " : "" %}
 {% set padding_bottom   = section.section_padding_bottom ? "padding-bottom: #{section.section_padding_bottom}px; " : "" %}
 
-<section class="section section-{{ section.section_type }} relative flex justify-center items-center w-full text-center {{ section_index in [0] ? " pt-24" : " " }}" style="{{text_color}}{{background_image ?: background_color}}{{margin_top}}{{margin_bottom}}{{padding_top}}{{padding_bottom}}">
+<section class="section section-{{ section.section_type }} relative flex justify-center items-center w-full text-center py-20 {{ section_index in [0] ? " pt-24" : " " }}" style="{{text_color}}{{background_image ?: background_color}}{{margin_top}}{{margin_bottom}}{{padding_top}}{{padding_bottom}}">
 	<div class="md:container lg:px-0 md:px-6 px-12">
 		{% if section.section_type in ['hero', 'three_columns', 'two_rows', 'big_image_below', 'contact_form', 'map', 'simple'] %}
-			{% include "sections/section-#{section.section_type}.twig" %}
+			{% include "sections/section-#{section.section_type}.twig" with { animation_on: section_index > 1 }%}
 		{% else %}
 			<p>Here will be section
 				{{ section.section_type }}! Be patient...</p>

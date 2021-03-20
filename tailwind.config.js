@@ -1,7 +1,19 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      gray: colors.trueGray,
+      red: { DEFAULT: "#e30613", 500: "#EF4444" },
+      orange: colors.orange,
+      green: colors.green,
+      black: "#000000",
+      white: "#FFFFFF",
+    },
     screens: {
       xs: "309px",
       sm: "640px",

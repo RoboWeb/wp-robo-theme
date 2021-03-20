@@ -6,12 +6,13 @@
 {% set img_margin_right = image.image_margins.margin_right ? "margin-right: #{image.image_margins.margin_right}px; " : "margin-right: auto; " %}
 {% set img_margin_bottom = image.image_margins.margin_bottom ? "margin-bottom: #{image.image_margins.margin_bottom}px; " : "margin-bottom: auto; " %}
 {% set img_margin_left = image.image_margins.margin_left ? "margin-left: #{image.image_margins.margin_left}px; " : "margin-left: auto; " %}
+{% set img_id = image.image_ID ? 'id="' ~ image.image_ID ~ '"' : '' %}
 
 
 <div
 	class="block-image-wrapper">
 	<!-- block: image-block -->
 	<img
-	src="{{ image.image }}" alt="{{ image.image_alt }}" class="justify-self-center z-10 relative" style="{{ img_margin_top }}{{ img_margin_right }}{{ img_margin_bottom }}{{ img_margin_left }}" loading="lazy"/>
+	{{ img_id }} src="{{ image.image }}" alt="{{ image.image_alt }}" class="justify-self-center z-10 relative" style="{{ img_margin_top }}{{ img_margin_right }}{{ img_margin_bottom }}{{ img_margin_left }}" loading="lazy"/>
 <!-- //block: image-block -->
 </div>

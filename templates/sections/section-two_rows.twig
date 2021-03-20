@@ -5,8 +5,9 @@
 
 {% set fields = section.section_two_rows %}
 
-<div class="section-content-wrapper w-full max-w-screen-xl mx-auto flex flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
-	<!-- section: two_rows -->
+<div
+	class="section-content-wrapper w-full max-w-screen-xl mx-auto flex flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
+	<!-- section: two_rows - animation {{ animation_on }} -->
 	{% if fields.first_row_fields %}
 		{{ include("sections/section-hero.twig", { section_hero: fields.first_row_fields }) }}
 	{% endif %}

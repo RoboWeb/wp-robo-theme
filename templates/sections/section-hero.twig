@@ -4,20 +4,21 @@
 #}
 
 {% set fields = section.section_hero %}
+{% set animation_classes = animation_on ? " scrollme animateme " : "" %}
 
 
 <div
 	class="section-content-wrapper w-full max-w-screen-xl mx-auto flex md:flex-row flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
-	<!-- section: hero -->
+	<!-- section: hero - animation {{ animation_on }} -->
 	{% if fields.block_order == 'content_first' %}
 		<div class="block content-block flex-1 self-center pr-8">
 			{% include "blocks/content-block.twig" with { 'content': fields.content} %}
 		</div>
-		<div class="block image-block flex-grow-0 md:w-2/5 w-10/12 mx-auto">
+		<div class="block image-block flex-grow-0 md:w-2/5 w-10/12 mx-auto {{ animation_classes }}" data-when="enter" data-from="0.3" data-to="0" data-crop="false" data-opacity="0" data-scale="1.5" data-translatex="200">
 			{% include "blocks/image-block.twig" with { 'image': fields.hero_image } %}
 		</div>
 	{% else %}
-		<div class="block image-block flex-grow-0 md:w-2/5 w-10/12 mx-auto">
+		<div class="block image-block flex-grow-0 md:w-2/5 w-10/12 mx-auto {{ animation_classes }}" data-when="enter" data-from="0.3" data-to="0" data-crop="false" data-opacity="0" data-scale="1.5" data-translatex="-200">
 			{% include "blocks/image-block.twig" with { 'image': fields.hero_image } %}
 		</div>
 		<div class="block content-block flex-1 self-center md:pl-8 md:pr-0 px-12">

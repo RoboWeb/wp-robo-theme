@@ -5,10 +5,11 @@
 {% import "macros/styles.macro.twig" as _style %}
 
 {% set fields = section.section_big_image_below %}
+{% set animation_classes = animation_on ? " scrollme animateme " : "" %}
 
 <div
 	class="section-content-wrapper w-full max-w-screen-xl mx-auto flex flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
-	<!-- section: big image below -->
+	<!-- section: big image below - animation {{ animation_on }} -->
 	{% if fields.content.title or fields.content.introduction %}
 		<div class="row flex md:flex-row flex-col items-stretch">
 			{% if fields.content.title %}
@@ -71,7 +72,7 @@
 		</div>
 	{% endif %}
 	{% if fields.big_image and fields.big_image.image %}
-		<div class="row">
+		<div class="row {{ animation_classes }}" data-when="enter" data-from="0.8" data-to="0" data-opacity="0" data-scale="1.5" data-rotatex="90">
 			<div class="column">
 				{% include "blocks/image-block.twig" with { 'image': fields.big_image } %}
 			</div>

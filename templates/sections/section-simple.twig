@@ -6,14 +6,14 @@
 {% import "macros/styles.macro.twig" as _style %}
 
 {% set fields = section.section_simple_content %}
-
+{% set animation_classes = animation_on ? " scrollme animateme " : "" %}
 
 <div
 	class="section-content-wrapper w-full max-w-screen-xl mx-auto flex md:flex-row flex-col flex-nowrap items-stretch" style="min-height: 1rem;">
-	<!-- section: simple -->
+	<!-- section: simple - animation {{ animation_on }} -->
 	<div class="row flex-1 flex md:flex-row flex-col items-stretch">
 		{% if fields.content.title %}
-			<div class="column text-left flex-grow-0 w-5/12 md:mb-0 mb-12 {{ fields.content.introduction ? " pr-12" : " " }}">
+			<div class="column text-left flex-grow-0 w-5/12 md:mb-0 mb-12 {{ fields.content.introduction ? " pr-12" : " " }}{{ animation_classes }}" data-when="enter" data-from="0.3" data-to="0" data-crop="false" data-opacity="0" data-translatex="-300">
 				{% set offsets = fields.content.offsets_of.title %}
 				{% set style = "" ~ 'style="' 
 						~ _style.single("font-size", (fields.content.title_font_size ? fields.content.title_font_size / 100 : false), "rem") 
@@ -46,7 +46,7 @@
 				~ _style.single("pading-left", offsets.padings.left)
 				~ '"'
 			%}
-			<div class="column text-left flex-1 text-left {{ fields.content.title ? " md:pl-12 pl-0" : " " }}">
+			<div class="column text-left flex-1 text-left {{ fields.content.title ? " md:pl-12 pl-0" : " " }}{{ animation_classes }}" data-when="enter" data-from="0.5" data-to="0" data-crop="false" data-opacity="0" data-translatex="300">
 				<div class="block-content-intro text-base" {{ style }}>{{ fields.content.introduction }}</div>
 				{% if fields.content.link %}
 					{% set offsets = fields.content.offsets_of.link %}

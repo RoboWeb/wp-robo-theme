@@ -86,6 +86,7 @@
 
   function init() {
     initEvents();
+    // animatePointsOnMap();
   }
 
   function initEvents() {
@@ -99,6 +100,31 @@
       }
     });
   }
+
+  // function animatePointsOnMap() {
+  //   const pulsedMap = document.getElementById("pulsed_map");
+
+  //   if (pulsedMap) {
+  //     const mapImageWrapper = pulsedMap.parentNode;
+
+  //     let pulse_1 = document.createElement("div");
+  //     classie.add(pulse_1, "pulsed-orb");
+  //     pulse_1.style.top = "1rem";
+  //     pulse_1.style.left = "1rem";
+  //     pulse_1.style.width = "16px";
+  //     pulse_1.style.height = "16px";
+
+  //     let pulse_2 = document.createElement("div");
+  //     classie.add(pulse_2, "pulsed-orb");
+  //     pulse_2.style.top = "10rem";
+  //     pulse_2.style.left = "3rem";
+  //     pulse_2.style.width = "32px";
+  //     pulse_2.style.height = "32px";
+
+  //     mapImageWrapper.appendChild(pulse_1);
+  //     mapImageWrapper.appendChild(pulse_2);
+  //   }
+  // }
 
   function toggleMenu() {
     if (isOpen) {
