@@ -600,10 +600,6 @@ video {
   height: 5rem;
 }
 
-.h-24{
-  height: 6rem;
-}
-
 .h-auto{
   height: auto;
 }
@@ -628,6 +624,10 @@ video {
 
 .leading-tight{
   line-height: 1.25;
+}
+
+.m-auto{
+  margin: auto;
 }
 
 .mx-0{
@@ -742,6 +742,10 @@ video {
   top: 0px;
 }
 
+.right-0{
+  right: 0px;
+}
+
 .left-0{
   left: 0px;
 }
@@ -799,6 +803,10 @@ video {
 
 .invisible{
   visibility: hidden;
+}
+
+.whitespace-nowrap{
+  white-space: nowrap;
 }
 
 .w-1\/4{
@@ -920,6 +928,63 @@ video {
   position: relative;
   top: 0px;
   z-index: 20;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+#header > .wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-items: stretch;
+  height: 6rem;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+#header > .wrapper #evmar_logo {
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 300ms;
+  --tw-translate-x: -22px;
+}
+
+/** ---- sticky --- */
+
+#header.is-sticky {
+  --tw-bg-opacity: 1;
+  background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+  height: 3rem;
+  position: fixed;
+  top: 0px;
+}
+
+.admin-bar #header.is-sticky {
+  top: 2.9rem;
+}
+
+#header.is-sticky > .wrapper {
+  height: 3rem;
+}
+
+#header.is-sticky > .wrapper #evmar_logo {
+  --tw-translate-x: -13px;
 }
 
 #nav_main {
@@ -951,6 +1016,7 @@ video {
   margin-right: -3rem;
   position: fixed;
   left: 0px;
+  top: 3rem;
   --tw-translate-x: 0;
   --tw-translate-y: 0;
   --tw-rotate: 0;
@@ -976,6 +1042,10 @@ video {
 
 .nav-langs .navigation .nav-item {
   padding-left: 0.25rem;
+}
+
+body.show-menu {
+  overflow: hidden;
 }
 
 .show-menu #nav_main, .show-menu #nav_langs{
@@ -1135,6 +1205,11 @@ video {
   transition-duration: 200ms;
 }
 
+#mobile_menu_toggle, #mobile_menu_toggle:focus{
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
 #mobile_menu_toggle::after,
   #mobile_menu_toggle::before {
   content: "";
@@ -1268,6 +1343,12 @@ video {
     }
   }
 
+  @media (min-width: 782px) {
+    .admin-bar #header.is-sticky {
+      top: 2rem;
+    }
+  }
+
   @media (min-width: 1024px) {
     #header > .wrapper, #footer > .wrapper, #footer_widgets > .wrapper{
       max-width: 1024px;
@@ -1316,6 +1397,26 @@ video {
 
     .navigation .nav-item.menu-item-has-children:hover > .navigation {
       opacity: 1;
+    }
+
+    #header, #header.is-sticky{
+      background-color: transparent;
+      height: 6rem;
+      position: relative;
+    }
+
+    #header > .wrapper, #header.is-sticky > .wrapper{
+      background-color: transparent;
+      height: 6rem;
+    }
+
+    #header > .wrapper #evmar_logo,
+      #header.is-sticky > .wrapper #evmar_logo {
+      --tw-translate-x: -22px;
+    }
+
+    #header > .wrapper #nav_langs, #header.is-sticky > .wrapper #nav_langs{
+      top: 0px;
     }
 
     #nav_langs {

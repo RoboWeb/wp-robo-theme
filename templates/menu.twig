@@ -2,9 +2,9 @@
 	{% for item in items %}
 		{% set target = item.target ? 'target="#{item.target}"' : '' %}
 		<li class="{{ item.classes | join(' ') }} nav-item">
-			<a class="lg:h-full h-auto flex flex-wrap content-center px-1 lowercase transition-colors duration-300 ease-out focus:outline-none" {{ target }} href=" {{ item.link }} ">{{ item.title }}</a>
+			<a class="lg:h-full h-auto flex flex-wrap content-center px-1 lowercase transition-colors duration-300 ease-out focus:outline-none {{ has_parent ? '' : 'whitespace-nowrap' }}" {{ target }} href=" {{ item.link }} ">{{ item.title }}</a>
 			{% if item.children %}
-				{% include "menu.twig" with {'items': item.children} %}
+				{% include "menu.twig" with {'items': item.children, has_parent: true } %}
 			{% endif %}
 		</li>
 	{% endfor %}
