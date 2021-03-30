@@ -6,7 +6,7 @@
 /** Defines  */
 define( 'ROBO_THEME_DIR', get_template_directory() );
 define( 'ROBO_THEME_URL', get_stylesheet_directory_uri() );
-define( 'GOOGLE_MAP_API_KEY', 'AIzaSyBle18YiP8NvmXQQTHDz2oxbRvbiwZVaWM');
+define( 'GOOGLE_MAP_API_KEY', 'AIzaSyACrRV6V3sBPLPNxsdzQW6xZxGpwR6WIPQ');
 
 /**
  * If you are installing Timber as a Composer dependency in your theme, you'll need this block
@@ -102,9 +102,9 @@ class RoboSite extends Timber\Site {
 	public function robo_jscipts() {
 		wp_enqueue_script(
 			'robo_js',
-			get_theme_file_uri( '/static/js/min.main.js' ),
+			get_theme_file_uri( '/static/js/main.js' ),
 			[],
-			'20210325.1919.33',
+			'202103.45',
 			true
 		);
 		wp_enqueue_script(

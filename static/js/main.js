@@ -86,7 +86,26 @@
     isOpen = false;
 
   function init() {
+    removeScrollMeOnMobile();
     initEvents();
+  }
+
+  function removeScrollMeOnMobile() {
+    console.log({
+      width: window.screen.width,
+      pixelRatio: window.devicePixelRatio,
+    });
+
+    if (window.screen.width <= 1024) {
+      let scrollmeElements = document.getElementsByClassName("animateme"),
+        i;
+      if (scrollmeElements.length) {
+        for (i = 0; i < scrollmeElements.length; i++) {
+          console.log(scrollmeElements[i]);
+          classie.remove(scrollmeElements[i], "scrollme");
+        }
+      }
+    }
   }
 
   function initEvents() {
@@ -100,17 +119,7 @@
       }
     });
 
-    document.addEventListener(
-      "scroll",
-      _headerScrollPosition,
-      // function (ev) {
-      //   let target = ev.target;
-      //   let scrollTop = ev.target.scrollingElement.scrollTop;
-      //   console.log("document scrollTop", target, scrollTop);
-      // },
-      false
-    );
-    console.log("initEvents");
+    document.addEventListener("scroll", _headerScrollPosition, false);
   }
 
   function toggleMenu() {

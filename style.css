@@ -913,16 +913,6 @@ video {
   }
 }
 
-.evmar_logo {
-  /* fill: #f00; */
-  fill: #e30613;
-}
-
-.footer-logo .evmar_logo {
-  fill: #e30613;
-  /* fill: #f00; */
-}
-
 #header {
   color: #e30613;
   position: relative;
@@ -976,7 +966,7 @@ video {
 }
 
 .admin-bar #header.is-sticky {
-  top: 2.9rem;
+  top: 0;
 }
 
 #header.is-sticky > .wrapper {
@@ -1297,6 +1287,12 @@ body.show-menu {
     @apply block absolute bg-red rounded-full animate-ping;
   } */
 
+@media (min-width: 601px) {
+  .admin-bar #header.is-sticky {
+    top: 2.9rem;
+  }
+}
+
 @media (min-width: 709px) {
   #header > .wrapper, #footer > .wrapper, #footer_widgets > .wrapper{
     width: 100%;
@@ -1539,7 +1535,6 @@ body.show-menu {
   margin-bottom: auto;
   margin-right: 1.75rem;
   position: absolute;
-  left: 0px;
   left: 0px;
   top: 0.75rem;
   width: 2.75rem;
