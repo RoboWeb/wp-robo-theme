@@ -6,7 +6,7 @@
 /** Defines  */
 define( 'ROBO_THEME_DIR', get_template_directory() );
 define( 'ROBO_THEME_URL', get_stylesheet_directory_uri() );
-define( 'GOOGLE_MAP_API_KEY', 'AIzaSyACrRV6V3sBPLPNxsdzQW6xZxGpwR6WIPQ');
+// define( 'GOOGLE_MAP_API_KEY', 'AIzaSyACrRV6V3sBPLPNxsdzQW6xZxGpwR6WIPQ');
 
 /**
  * If you are installing Timber as a Composer dependency in your theme, you'll need this block
@@ -66,7 +66,8 @@ class RoboSite extends Timber\Site {
 		add_action( 'after_setup_theme', [ $this, 'robo_theme_setup' ] );
 		add_action( 'after_setup_theme', [ $this, 'robo_menus_register' ] );
 
-		add_action('phpmailer_init', [$this, 'robo_phpmailer_init']);
+		// add_action('phpmailer_init', [$this, 'robo_phpmailer_init']);
+
 
 		add_action( 'widgets_init', [ $this, 'robo_widgets_init' ] );
 		add_filter( 'timber/context', [ $this, 'add_to_context' ] );
@@ -104,7 +105,7 @@ class RoboSite extends Timber\Site {
 			'robo_js',
 			get_theme_file_uri( '/static/js/main.js' ),
 			[],
-			'202103.45',
+			'202103.48',
 			true
 		);
 		wp_enqueue_script(
@@ -147,6 +148,9 @@ class RoboSite extends Timber\Site {
 			'social' 	=> new Timber\Menu('social')
 		];
 		$context['langs'] = pll_the_languages(['raw' => 1]);
+		$currLang = pll_current_language();
+		$context['current_lang'] = $currLang;
+		$context['google_map_uri'] = 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5035304.490098312!2d11.5089982!3d51.958669!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4707d1f01eed8e0d%3A0xe674f173d18e449f!2sEvMAR%20Automation%20GmbH!5e0!3m2!1s'.$currLang.'!2spl!4v1617444288017!5m2!1s'.$currLang.'!2spl';
 
 		$context['bottom_widgets'] = Timber::get_widgets( 'sidebar-bottom' );
 		$context['site'] = $this;
@@ -408,7 +412,7 @@ class RoboSite extends Timber\Site {
 	public function robo_acf_init() {
 		
 		// Register Google API Key
-		acf_update_setting('google_api_key', GOOGLE_MAP_API_KEY);
+		// acf_update_setting('google_api_key', GOOGLE_MAP_API_KEY);
 
 		// sprawdzamy czy funkcja istnieje
         if( !function_exists('acf_register_block_type') ) return;
@@ -430,6 +434,24 @@ class RoboSite extends Timber\Site {
 			));
 		}
 
+		add_filter('acf/update_value/type=email', [$this, 'robo_acf_update_value_email'], 10, 4);
+		add_filter('acf/format_value/type=email', [$this, 'robo_acf_format_value_email'], 10, 3);
+
+	}
+
+	/**  */
+	public function robo_acf_update_value_email( $value, $post_id, $field, $original ) {
+		if( is_string($value) ) {
+			$value = base64_encode($value);
+		}
+		return $value;
+	}
+
+	/** */
+	function robo_acf_format_value_email( $value, $post_id, $field ) {
+
+		// Render shortcodes in all textarea values.
+		return sprintf('<a class="robo_monkey" data-href="%1$s">%1$s</a>', do_shortcode( $value ));
 	}
 
 	private function __addColors($color, $variants) {
@@ -454,12 +476,12 @@ class RoboSite extends Timber\Site {
 	/** Robo PHPMailer config */
 	public function robo_phpmailer_init($pm) {
 		// $pm -> phpmailer
-		$pm->Host = get_field('host', 'options') ?: 'smtp.dpoczta.pl';
-		$pm->Port = get_field('port', 'options') ?: 587;
-		$pm->Username = get_field('email_account_username', 'options') ?: 'wpapp.admin@roboweb.eu'; // your SMTP username
-		$pm->Password = get_field('email_account_password', 'options') ?: '8foC9jUy5D'; // your SMTP password
-		$pm->SMTPAuth = true; 
-		$pm->SMTPSecure = get_field('smtp_auth', 'options') ?: 'tls'; // preferable but optional
+		$pm->Host = get_field('host', 'options') ?? 'smtp.dpoczta.pl';
+		$pm->Port = get_field('port', 'options') ?? 587;
+		$pm->Username = get_field('email_account_username', 'options') ?? 'wpapp.admin@roboweb.eu'; // your SMTP username
+		$pm->Password = get_field('email_account_password', 'options') ?? '8foC9jUy5D'; // your SMTP password
+		$pm->SMTPAuth = !!get_field('smtp_auth', 'options'); 
+		$pm->SMTPSecure = 'tls'; // preferable but optional
 		$pm->IsSMTP();
 	}
 }

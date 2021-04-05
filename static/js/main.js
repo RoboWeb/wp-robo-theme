@@ -86,22 +86,32 @@
     isOpen = false;
 
   function init() {
+    makeReadableEmails();
     removeScrollMeOnMobile();
     initEvents();
   }
 
-  function removeScrollMeOnMobile() {
-    console.log({
-      width: window.screen.width,
-      pixelRatio: window.devicePixelRatio,
-    });
+  function makeReadableEmails() {
+    let monkeys = document.getElementsByClassName("robo_monkey"),
+      i;
+    if (monkeys.length) {
+      for (i = 0; i < monkeys.length; i++) {
+        let em_encoded =
+          monkeys[i].dataset.href || monkeys[i].getAttribute("data-href");
+        let em = window.atob(em_encoded);
+        console.log(em, em_encoded);
+        monkeys[i].href = `mailto:${em}`;
+        monkeys[i].textContent = em;
+      }
+    }
+  }
 
+  function removeScrollMeOnMobile() {
     if (window.screen.width <= 1024) {
       let scrollmeElements = document.getElementsByClassName("animateme"),
         i;
       if (scrollmeElements.length) {
         for (i = 0; i < scrollmeElements.length; i++) {
-          console.log(scrollmeElements[i]);
           classie.remove(scrollmeElements[i], "scrollme");
         }
       }

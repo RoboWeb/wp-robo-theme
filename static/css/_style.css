@@ -184,15 +184,18 @@
     --tw-rotate: 45deg;
   }
 
-  /** pulsed orbs on map image */
-  /* .block-image-wrapper {
-    @apply relative;
+  .google_map_iframe {
+    filter: grayscale(100%) brightness(100%) saturate(0%) contrast(105%);
+    -webkit-filter: grayscale(100%) brightness(100%) saturate(0%) contrast(105%);
+    -moz-filter: grayscale(100%) brightness(100%) saturate(0%) contrast(105%);
+    @apply transition-all duration-300 ease-out;
   }
-  #pulsed_map ~ .pulsed-orb {
-    min-width: 16px;
-    min-height: 16px;
-    @apply block absolute bg-red rounded-full animate-ping;
-  } */
+  .google_map_iframe:hover {
+    filter: grayscale(0%);
+    -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    @apply duration-1000;
+  }
 
   @media (min-width: 601px) {
     .admin-bar #header.is-sticky {

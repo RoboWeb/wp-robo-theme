@@ -437,7 +437,8 @@ textarea {
 img,
 svg,
 video,
-audio {
+audio,
+iframe {
   display: block;
   vertical-align: middle;
 }
@@ -675,6 +676,10 @@ video {
 
 .overflow-x-hidden{
   overflow-x: hidden;
+}
+
+.p-0{
+  padding: 0px;
 }
 
 .px-1{
@@ -1276,16 +1281,23 @@ body.show-menu {
   --tw-rotate: 45deg;
 }
 
-/** pulsed orbs on map image */
+.google_map_iframe {
+  filter: grayscale(100%) brightness(100%) saturate(0%) contrast(105%);
+  -webkit-filter: grayscale(100%) brightness(100%) saturate(0%) contrast(105%);
+  -moz-filter: grayscale(100%) brightness(100%) saturate(0%) contrast(105%);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
 
-/* .block-image-wrapper {
-    @apply relative;
-  }
-  #pulsed_map ~ .pulsed-orb {
-    min-width: 16px;
-    min-height: 16px;
-    @apply block absolute bg-red rounded-full animate-ping;
-  } */
+.google_map_iframe:hover {
+  filter: grayscale(0%);
+  -webkit-filter: grayscale(0%);
+  -moz-filter: grayscale(0%);
+  transition-duration: 1000ms;
+}
 
 @media (min-width: 601px) {
   .admin-bar #header.is-sticky {
