@@ -1515,19 +1515,6 @@ body.show-menu {
 
 /** Robo: Hero Content Block */
 
-/* .section {
-    perspective: 8px;
-    perspective-origin: 0%;
-  }
-  .parallax::after {
-    content: "";
-    z-index: -1;
-    transform: translateZ(-3px) scale(1.5);
-    background-size: 100%;
-    @apply absolute top-0 right-0 bottom-0 left-0;
-    background-image: var(--bg-parallax-image);
-  } */
-
 /**
    * List
    */
@@ -1550,6 +1537,50 @@ body.show-menu {
   left: 0px;
   top: 0.75rem;
   width: 2.75rem;
+}
+
+/**
+   * Link
+   */
+
+.section-content-wrapper a {
+  position: relative;
+  text-decoration: underline;
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.section-content-wrapper a::after {
+  content: "";
+  --tw-bg-opacity: 1;
+  background-color: rgba(227, 6, 19, var(--tw-bg-opacity));
+  border-width: 0px;
+  display: block;
+  height: 1px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: auto;
+  width: 0px;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  transition-duration: 500ms;
+}
+
+.section-content-wrapper a:hover {
+  --tw-bg-opacity: 1;
+  color: rgba(227, 6, 19, var(--tw-bg-opacity));
+}
+
+.section-content-wrapper a:hover::after {
+  height: 1px;
+  left: 0;
+  right: auto;
+  width: 100%;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
 /**

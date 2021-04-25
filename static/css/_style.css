@@ -356,18 +356,6 @@
     margin-bottom: 1em;
   }
 
-  /* .section {
-    perspective: 8px;
-    perspective-origin: 0%;
-  }
-  .parallax::after {
-    content: "";
-    z-index: -1;
-    transform: translateZ(-3px) scale(1.5);
-    background-size: 100%;
-    @apply absolute top-0 right-0 bottom-0 left-0;
-    background-image: var(--bg-parallax-image);
-  } */
   /**
    * List
    */
@@ -377,6 +365,41 @@
   .block-content-intro ul li::before {
     content: "";
     @apply absolute top-3 inline-block w-11 h-0.5 bg-current left-0 my-auto mr-7;
+  }
+
+  /**
+   * Link
+   */
+  .section-content-wrapper a {
+    @apply underline relative transition-colors duration-300 ease-out;
+  }
+
+  .section-content-wrapper a::after {
+    content: "";
+    --tw-bg-opacity: 1;
+    background-color: rgba(227, 6, 19, var(--tw-bg-opacity));
+    border-width: 0px;
+    display: block;
+    height: 1px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: 0px;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    transition-duration: 500ms;
+  }
+  .section-content-wrapper a:hover {
+    --tw-bg-opacity: 1;
+    color: rgba(227, 6, 19, var(--tw-bg-opacity));
+  }
+  .section-content-wrapper a:hover::after {
+    height: 1px;
+    left: 0;
+    right: auto;
+    width: 100%;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
   /**
    * Buttons
