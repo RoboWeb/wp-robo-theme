@@ -1513,6 +1513,11 @@ body.show-menu {
   line-height: 1.5em;
 }
 
+a.hero-intro:after,
+  .section-content-wrapper a.hero-intro:after {
+  content: none;
+}
+
 /** Robo: Hero Content Block */
 
 /**

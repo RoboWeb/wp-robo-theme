@@ -348,6 +348,10 @@
   .hero-intro {
     @apply text-base;
   }
+  a.hero-intro:after,
+  .section-content-wrapper a.hero-intro:after {
+    content: none;
+  }
 
   /** Robo: Hero Content Block */
   .hero-content-block.robo-hero-content
