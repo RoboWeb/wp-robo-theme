@@ -483,7 +483,7 @@
   .section-contact-form-wrapper
     .form-block
     .acf-fields
-    > .af-field.af-field-type-checkbox.af-field-policy-acceptance.acf-field.acf-field-checkbox
+    > .acf-field.acf-field-checkbox
     .acf-checkbox-list.acf-hl
     label
     input[type="checkbox"],

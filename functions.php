@@ -240,16 +240,6 @@ class RoboSite extends Timber\Site {
 		
 		/** EDITOR - GUTENBERG*/
 		add_filter('use_block_editor_for_post', '__return_false', 10);
-		// add_theme_support( 'wp-block-styles' );
-		// Add support for full and wide align images.
-		// add_theme_support( 'align-wide' );
-
-		// Add support for editor styles.
-		// add_theme_support( 'editor-styles' );
-		// add_editor_style( 'style-editor.css' );
-
-
-
 
 		// Add custom editor font sizes.
 		// add_theme_support('disable-custom-font-sizes');
@@ -312,6 +302,8 @@ class RoboSite extends Timber\Site {
 		// Add support for custom line height controls.
 		add_theme_support( 'custom-line-height' );
 
+		// additional words for translation
+		pll_register_string('robo', 'country', 'evmar');
 		
 	}
 
@@ -437,6 +429,17 @@ class RoboSite extends Timber\Site {
 		add_filter('acf/update_value/type=email', [$this, 'robo_acf_update_value_email'], 10, 4);
 		add_filter('acf/format_value/type=email', [$this, 'robo_acf_format_value_email'], 10, 3);
 
+		// shortcodes
+		add_shortcode('translate', [$this, 'robo_shortcode_translate']);
+
+	}
+
+	public function robo_shortcode_translate($atts) {
+		$a = shortcode_atts(['word' => '!no-translations'], $atts);
+		
+		$translation = pll__($a['word']);
+
+		return $translation;
 	}
 
 	/**  */

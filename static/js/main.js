@@ -99,7 +99,7 @@
         let em_encoded =
           monkeys[i].dataset.href || monkeys[i].getAttribute("data-href");
         let em = window.atob(em_encoded);
-        console.log(em, em_encoded);
+
         monkeys[i].href = `mailto:${em}`;
         monkeys[i].textContent = em;
       }
