@@ -1,4 +1,4 @@
-<div class="wrapper flex flex-row justify-between items-center h-20 mt-6">
+<div class="wrapper flex flex-col md:flex-row justify-between items-center h-20 mt-6">
 	<div class="footer-logo h-full">
 
 		<a class="hdr-logo-link flex w-1/4 content-center h-full w-full" style="max-width: {{ custom_logo.max.width }}px; min-width: {{ custom_logo.min.width }}px;" href="{{ site.url }}" rel="home" title="{{ site.name }}">
@@ -9,7 +9,7 @@
 	<div class="footer-menu">
 		{% include "menu_footer.twig" with {'items': menu.footer.get_items} %}
 	</div>
-	<div class="copyright">
+	<div class="copyright mt-4 md:mt-0">
 		{{ site.name }}&nbsp;&copy;&nbsp;{{"now"|date('Y')}}
 	</div>
 </div>

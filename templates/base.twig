@@ -41,9 +41,9 @@
 							{% for key, lang in langs %}
 								<li class="nav-item {{ lang.current_lang ? 'is-current' : '' }}">
 									{% if lang.current_lang %}
-										<span class="h-full flex flex-wrap content-center px-1 lowercase font-bold text-gray-300">{{ key }}</span>
+										<span class="h-full flex flex-wrap content-center px-1 uppercase font-bold text-gray-300">{{ key }}</span>
 									{% else %}
-										<a class="h-full flex flex-wrap content-center px-1 lowercase text-gray-300 hover:text-gray-500 focus:outline-none" href="{{ lang.url }}">{{ key }}</a>
+										<a class="h-full flex flex-wrap content-center px-1 uppercase text-gray-300 hover:text-gray-500 focus:outline-none" href="{{ lang.url }}">{{ key }}</a>
 									{% endif %}
 								</li>
 							{% endfor %}
