@@ -777,6 +777,59 @@
   }
 }
 
+.simple-content-row {
+  max-width: calc(100vw - 6rem);
+}
+
+@media (min-width: 709px) {
+  .simple-content-row {
+    max-width: 100%;
+  }
+}
+
+/**** TABLE - tablefield ****/
+.tablefield-wrapper {
+  max-width: calc(100% + 2.5rem);
+  @apply block overflow-x-scroll py-1 -mt-8 -mx-6;
+}
+.tablefield {
+  @apply w-full table-auto border-collapse border border-black min-w-min pb-4;
+}
+.tablefield thead th,
+.tablefield tbody td {
+  @apply font-light py-1 px-2 whitespace-nowrap;
+}
+.tablefield thead th {
+  @apply bg-black text-white;
+}
+.tablefield tbody td {
+  @apply text-black border border-black;
+}
+
+/* @media (min-width: 309px) {
+} */
+@media (min-width: 640px) {
+  .tablefield thead th,
+  .tablefield thead td {
+    @apply py-1 px-4;
+  }
+}
+@media (min-width: 709px) {
+  .tablefield-wrapper {
+    max-width: 100%;
+    @apply mt-12 mx-0;
+  }
+}
+@media (min-width: 782px) {
+}
+@media (min-width: 1024px) {
+  .tablefield thead th,
+  .tablefield thead td {
+    @apply py-2 px-8;
+  }
+}
+/* @media (min-width: 1280px) {
+} */
 /***********************************************/
 /** menu animations */
 /* Common styles for all menus */

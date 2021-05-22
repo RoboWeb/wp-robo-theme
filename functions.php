@@ -304,6 +304,7 @@ class RoboSite extends Timber\Site {
 
 		// additional words for translation
 		pll_register_string('robo', 'country', 'evmar');
+		pll_register_string('robo', 'submit', 'evmar');
 		
 	}
 
@@ -381,7 +382,7 @@ class RoboSite extends Timber\Site {
 		$args = [
 			'display_title' => false,
 			'display_description' => false,
-			'submit_text' => __('Submit', 'rcom'),
+			'submit_text' => pll__('submit', 'robo'),
 			'echo' => false,
 			'target' => '#contact_form_' . $id
 		];
@@ -415,15 +416,26 @@ class RoboSite extends Timber\Site {
 			$parent = acf_add_options_page(array(
 				'page_title'  => __('Page General Settings'),
 				'menu_title'  => __('Site Settings'),
+				// 'menu_slug'	  => 'evmar_general_settings',
 				'redirect'    => false,
 			));
-	
+
 			// Add sub page.
-			$child = acf_add_options_page(array(
+			$child = acf_add_options_sub_page(array(
 				'page_title'  => __('Form Subbmission Settings'),
 				'menu_title'  => __('SMTP E-mail Account'),
 				'parent_slug' => $parent['menu_slug'],
 			));
+
+			// Add realisations.
+			$other= acf_add_options_page(array(
+				'page_title'  => __('Realisations'),
+				'menu_title'  => __('Realisations'),
+				// 'menu_slug'	  => 'realisations',
+				'redirect' => false
+			));
+
+			
 		}
 
 		add_filter('acf/update_value/type=email', [$this, 'robo_acf_update_value_email'], 10, 4);
@@ -431,6 +443,7 @@ class RoboSite extends Timber\Site {
 
 		// shortcodes
 		add_shortcode('translate', [$this, 'robo_shortcode_translate']);
+		add_shortcode('tablefield', [$this, 'robo_shortcode_tablefield']);
 
 	}
 
@@ -440,6 +453,54 @@ class RoboSite extends Timber\Site {
 		$translation = pll__($a['word']);
 
 		return $translation;
+	}
+
+	public function robo_shortcode_tablefield($atts) {
+		$a = shortcode_atts( [
+			'table-class' => '',
+			'field-name' => false,
+			'post-id' => false,
+		], $atts );
+
+		$table = get_field( $a['field-name'], $a['post-id'] );
+
+		$return = '';
+
+		if ($table) {
+			$return .= '<div class="tablefield-wrapper">';
+			$return .= '<table class="tablefield ' . $a['table-class'] . '" border="0">';
+
+			if ($table['header']) {
+				$return .= '<thead>';
+				$return .= '	<tr>';
+
+				foreach( $table['header'] as $th) {
+					$return .= '		<th>' . $th['c'] . '</th>';
+				}
+
+				$return .= '	</tr>';
+				$return .= '</thead>';
+			}
+
+			$return .= '<tbody>';
+
+			foreach( $table['body'] as $tr ) {
+				$return .= '	<tr>';
+
+				foreach ($tr as $td) {
+					$return .= '		<td>' . $td['c'] . '</td>';
+				}
+
+				$return .= '	</tr>';
+			}
+
+			$return .= '</tbody>';
+
+			$return .= '</table>';
+			$return .= '</div>';
+		}
+
+		return $return;
 	}
 
 	/**  */

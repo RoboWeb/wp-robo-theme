@@ -2,6 +2,7 @@
   Title: Section
   Description: A wrapper for sections
 #}
+{% set allowed_sections = ['hero', 'three_columns', 'two_rows', 'big_image_below', 'contact_form', 'map', 'simple', 'table' ] %}
 
 {% set background_color = "background-color: #{section.section_bg_color ?: 'transparent'}; " %}
 {% set background_image = section.section_bg_image ? "background: #{section.section_bg_color} url(#{section.section_bg_image}) no-repeat top center; background-size: cover; " : "" %}
@@ -11,11 +12,12 @@
 {% set margin_bottom    = section.section_margin_bottom ? "margin-bottom: #{section.section_margin_bottom}px; " : "" %}
 {% set padding_top      = section.section_padding_top ? "padding-top: #{section_index in [0] ? section.section_padding_top + 96 : section.section_padding_top}px; " : "" %}
 {% set padding_bottom   = section.section_padding_bottom ? "padding-bottom: #{section.section_padding_bottom}px; " : "" %}
+{% set two_columns_classes	= section.two_columns ? " md:flex-row flex-col" : " flex-col" %}
 
 <section class="section section-{{ section.section_type }} relative flex justify-center items-center w-full text-center py-20 {{ section_index in [0] ? " pt-24" : " " }}" style="{{text_color}}{{background_image ?: background_color}}{{margin_top}}{{margin_bottom}}{{padding_top}}{{padding_bottom}}">
 	<div class="md:container lg:px-0 md:px-6 px-12">
-		{% if section.section_type in ['hero', 'three_columns', 'two_rows', 'big_image_below', 'contact_form', 'map', 'simple'] %}
-			{% include "sections/section-#{section.section_type}.twig" with { animation_on: section_index > 1 }%}
+		{% if section.section_type in allowed_sections %}
+			{% include "sections/section-#{section.section_type}.twig" with { animation_on: section_index > 1 , two_cols: two_columns_classes }%}
 		{% else %}
 			<p>Here will be section
 				{{ section.section_type }}! Be patient...</p>
