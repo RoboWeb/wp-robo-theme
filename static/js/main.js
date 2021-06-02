@@ -143,12 +143,23 @@
 
   function _headerScrollPosition(event) {
     let isHeaderSticky = classie.has(_header, "is-sticky");
-    let target = event.target;
-    let scrollTop = event.target.scrollingElement.scrollTop;
+    // let target = event.target;
+    let pageYOffset = window.pageYOffset; //event.target.scrollingElement.scrollTop;
 
-    if (scrollTop > 96 && !isHeaderSticky) classie.add(_header, "is-sticky");
-    if (scrollTop <= 96 && isHeaderSticky) classie.remove(_header, "is-sticky");
-    // console.log("document scrollTop", isHeaderSticky, scrollTop);
+    if (pageYOffset > 96 && !isHeaderSticky) {
+      classie.add(_header, "is-sticky");
+      classie.add($body, "header_is_sticky");
+    }
+    if (pageYOffset <= 96 && isHeaderSticky) {
+      classie.remove(_header, "is-sticky");
+      classie.remove($body, "header_is_sticky");
+    }
+    console.log(
+      "document scrollTop",
+      isHeaderSticky,
+      pageYOffset,
+      event.target.scrollingElement.scrollTop
+    );
   }
 
   init();

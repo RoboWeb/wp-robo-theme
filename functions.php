@@ -105,7 +105,7 @@ class RoboSite extends Timber\Site {
 			'robo_js',
 			get_theme_file_uri( '/static/js/main.js' ),
 			[],
-			'202103.48',
+			'202105.5',
 			true
 		);
 		wp_enqueue_script(

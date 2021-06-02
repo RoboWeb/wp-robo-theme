@@ -17,7 +17,7 @@
 <section class="section section-{{ section.section_type }} relative flex justify-center items-center w-full text-center py-20 {{ section_index in [0] ? " pt-24" : " " }}" style="{{text_color}}{{background_image ?: background_color}}{{margin_top}}{{margin_bottom}}{{padding_top}}{{padding_bottom}}">
 	<div class="md:container lg:px-0 md:px-6 px-12">
 		{% if section.section_type in allowed_sections %}
-			{% include "sections/section-#{section.section_type}.twig" with { animation_on: section_index > 1 , two_cols: two_columns_classes }%}
+			{% include "sections/section-#{section.section_type}.twig" with { animation_on: section_index > 1 }%}
 		{% else %}
 			<p>Here will be section
 				{{ section.section_type }}! Be patient...</p>
